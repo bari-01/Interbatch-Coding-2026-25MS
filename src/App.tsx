@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { BootScreen } from './components/Boot/BootScreen'
 import { Desktop } from './components/Desktop/Desktop'
@@ -15,13 +15,13 @@ import './App.css'
 
 function AppContent({ appId }: { appId: AppId }) {
   switch (appId) {
-    case 'home':    return <HomeApp />
-    case 'about':   return <AboutApp />
-    case 'team':    return <TeamApp />
-    case 'stack':   return <TechStackApp />
-    case 'contact': return <ContactApp />
-    case 'neofetch':return <NeofetchApp />
-    default:        return null
+    case 'home':     return <HomeApp />
+    case 'about':    return <AboutApp />
+    case 'team':     return <TeamApp />
+    case 'stack':    return <TechStackApp />
+    case 'contact':  return <ContactApp />
+    case 'neofetch': return <NeofetchApp />
+    default:         return null
   }
 }
 
@@ -48,10 +48,29 @@ export default function App() {
 
   const handleRestoreWindow = useCallback((id: string) => {
     focusWindow(id)
-    // Un-minimize by refocusing (useWindowManager sets isMinimized=false on focus)
     const w = windows.find(w => w.id === id)
     if (w) openWindow(w.appId, w.title)
   }, [windows, focusWindow, openWindow])
+
+  // Screensaver — auto Matrix after 60s idle
+  useEffect(() => {
+    if (!booted) return
+    let timer: ReturnType<typeof setTimeout>
+
+    const reset = () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => setEasterEgg('matrix'), 60000)
+    }
+
+    const events = ['mousemove', 'keydown', 'mousedown', 'touchstart']
+    events.forEach(e => window.addEventListener(e, reset))
+    reset()
+
+    return () => {
+      clearTimeout(timer)
+      events.forEach(e => window.removeEventListener(e, reset))
+    }
+  }, [booted])
 
   if (!booted) {
     return <BootScreen onDone={() => setBooted(true)} />
@@ -66,7 +85,6 @@ export default function App() {
         onRestoreWindow={handleRestoreWindow}
       />
 
-      {/* Window layer */}
       <div className="window-layer">
         <AnimatePresence>
           {windows.map(win => (
@@ -91,7 +109,6 @@ export default function App() {
         </AnimatePresence>
       </div>
 
-      {/* Easter eggs */}
       {easterEgg === 'confetti' && (
         <Confetti onDone={() => setEasterEgg(null)} />
       )}
