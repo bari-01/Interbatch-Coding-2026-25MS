@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { AppId, WindowState } from '../../types'
 import './Desktop.css'
 
@@ -9,13 +10,13 @@ interface DesktopIcon {
 }
 
 const ICONS: DesktopIcon[] = [
-  { appId: 'terminal', title: 'terminal.sh',  label: 'Terminal',   icon: '>_'  },
-  { appId: 'home',     title: 'home.exe',     label: 'Home',       icon: '⌂'   },
-  { appId: 'about',    title: 'about.txt',    label: 'About',      icon: '📄'  },
-  { appId: 'team',     title: 'team.db',      label: 'Team',       icon: '👥'  },
-  { appId: 'stack',    title: 'stack.log',    label: 'Tech Stack', icon: '⚙'   },
-  { appId: 'contact',  title: 'contact.sh',   label: 'Contact',    icon: '@'   },
-  { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥'  },
+  { appId: 'terminal', title: 'terminal.sh',  label: 'Terminal',   icon: '>_' },
+  { appId: 'home',     title: 'home.exe',     label: 'Home',       icon: '⌂'  },
+  { appId: 'about',    title: 'about.txt',    label: 'About',      icon: '📄' },
+  { appId: 'team',     title: 'team.db',      label: 'Team',       icon: '👥' },
+  { appId: 'stack',    title: 'stack.log',    label: 'Tech Stack', icon: '⚙'  },
+  { appId: 'contact',  title: 'contact.sh',   label: 'Contact',    icon: '@'  },
+  { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥' },
 ]
 
 interface Props {
@@ -26,19 +27,23 @@ interface Props {
 }
 
 export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow }: Props) {
-  const now = new Date()
-  const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  const date = now.toLocaleDateString([], { month: 'short', day: 'numeric' })
+  const [time, setTime] = useState(new Date())
+
+  useEffect(() => {
+    const t = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(t)
+  }, [])
+
+  const timeStr = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+  const dateStr = time.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
 
   const minimized = windows.filter(w => w.isMinimized)
   const open = windows.filter(w => !w.isMinimized)
 
   return (
     <div className="desktop">
-      {/* Scanline overlay */}
       <div className="scanlines" />
 
-      {/* Desktop icons */}
       <div className="desktop-icons">
         {ICONS.map(icon => (
           <button
@@ -53,7 +58,6 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
         ))}
       </div>
 
-      {/* Taskbar */}
       <div className="taskbar">
         <div className="taskbar-left">
           <button
@@ -89,8 +93,8 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
         </div>
 
         <div className="taskbar-right">
-          <span className="taskbar-date">{date}</span>
-          <span className="taskbar-time">{time}</span>
+          <span className="taskbar-date">{dateStr}</span>
+          <span className="taskbar-time">{timeStr}</span>
         </div>
       </div>
     </div>
