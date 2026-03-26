@@ -38,6 +38,7 @@ SlashDot OS turns the SlashDot club website into a fake operating system running
 - Contact — `open contact`
 
 ### Terminal Customization
+```bash
 cursor block/bar/underline  → change cursor style
 theme green/amber/blue/red/purple → switch theme
 font+                       → increase font size
@@ -46,9 +47,10 @@ crt on/off                  → toggle CRT scanlines
 fullscreen                  → enter fullscreen
 exit-fullscreen             → exit fullscreen
 toggle-fullscreen           → toggle fullscreen
-
+```
 
 ### Easter Eggs
+```bash
 sudo party              → confetti explosion
 matrix                  → matrix rain effect
 hack                    → fake hacking sequence
@@ -74,6 +76,7 @@ reboot                  → recover from panic
 sudo give me marks      → perfect grades
 sudo make me a sandwich → xkcd reference
 sudo make me a cgpa     → perfect 10.0 CGPA
+```
 
 ## Tech Stack
 
