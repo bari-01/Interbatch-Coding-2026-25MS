@@ -68,6 +68,14 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
     }
     window.addEventListener('slashdot-cursor', cursorHandler)
 
+    const fontHandler = (e: Event) => {
+      const { delta } = (e as CustomEvent).detail
+      const current = term.options.fontSize ?? 13
+      term.options.fontSize = Math.min(20, Math.max(8, current + delta))
+      fitAddon.fit()
+    }
+    window.addEventListener('slashdot-font', fontHandler)
+
     // Listen for theme changes
     const themeHandler = (e: Event) => {
       const { name } = (e as CustomEvent).detail
@@ -213,6 +221,7 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
       ro.disconnect()
       term.dispose()
       window.removeEventListener('slashdot-cursor', cursorHandler)
+      window.removeEventListener('slashdot-font', fontHandler)
       window.removeEventListener('slashdot-theme', themeHandler)
     }
 

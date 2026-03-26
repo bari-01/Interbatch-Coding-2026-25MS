@@ -37,48 +37,43 @@ SlashDot OS turns the SlashDot club website into a fake operating system running
 - Team — `open team`
 - Contact — `open contact`
 
-### Terminal Commands
-```
-help              → all commands
-ls / cd / cat     → navigate virtual filesystem
-neofetch          → system info + logos
-whoami            → user info
-uname -a          → OS info
-date              → current date/time
-ping <host>       → ping a host
-history           → command history
-fullscreen        → enter fullscreen
-theme <name>      → switch terminal theme
-top               → fake process manager
-weather           → IISER Kolkata campus weather
-members           → SlashDot club office bearers
-clear             → clear terminal
-```
+### Terminal Customization
+cursor block/bar/underline  → change cursor style
+theme green/amber/blue/red/purple → switch theme
+font+                       → increase font size
+font-                       → decrease font size
+crt on/off                  → toggle CRT scanlines
+fullscreen                  → enter fullscreen
+exit-fullscreen             → exit fullscreen
+toggle-fullscreen           → toggle fullscreen
+
 
 ### Easter Eggs
-```
 sudo party              → confetti explosion
 matrix                  → matrix rain effect
+hack                    → fake hacking sequence
 vim about.txt           → fake vim editor
 apt install <pkg>       → fake package manager
+npm install             → 999 packages, 3 vulnerabilities
 ssh batch@iiserkol      → fake SSH into IISER server
-cowsay <text>           → a cow says things
-sl                      → steam locomotive
-fortune                 → random programming quote
-procrastinate           → fake SlashTube
-sudo give me marks      → perfect grades
-sudo make me a sandwich → xkcd reference
-sudo make me a cgpa     → perfect 10.0 CGPA
-theme green/amber/blue  → change terminal theme
 git log                 → fake commit history
 git blame               → blame someone for bugs
 git status              → show working tree status
+git push                → fake push to GitHub
+cowsay <text>           → a cow says things
+sl                      → steam locomotive
+fortune                 → random programming quote
+quote                   → random IISER/SlashDot quote
+procrastinate           → fake SlashTube
+weather                 → IISER campus weather
+top                     → fake process manager
+members                 → SlashDot office bearers
+changelog               → fake OS changelog
 panic                   → kernel panic screen
 reboot                  → recover from panic
-changelog               → fake OS changelog
-members                 → SlashDot office bearers
-cursor block/bar        → change cursor style
-```
+sudo give me marks      → perfect grades
+sudo make me a sandwich → xkcd reference
+sudo make me a cgpa     → perfect 10.0 CGPA
 
 ## Tech Stack
 

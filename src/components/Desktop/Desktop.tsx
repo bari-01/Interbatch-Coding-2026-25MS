@@ -227,6 +227,8 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
         </div>
 
         <div className="taskbar-right">
+          <span className="taskbar-wifi">▲ IISER-WiFi</span>
+          <span className="taskbar-battery">🔋 25%</span>
           <button
             className={'mute-btn' + (muted ? ' muted' : '')}
             onClick={handleMuteToggle}

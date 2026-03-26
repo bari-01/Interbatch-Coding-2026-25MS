@@ -418,6 +418,76 @@ export const easterEggs: Record<string, CommandHandler> = {
     ].join('\r\n'),
   }),
 
+  hack: (): CommandResult => ({
+    output: [
+      '',
+      `${c.green}Initializing hack sequence...${c.reset}`,
+      `${c.green}Bypassing firewall...${c.reset}`,
+      `${c.green}████████████████████ 100%${c.reset}`,
+      '',
+      `${c.green}ACCESS GRANTED${c.reset}`,
+      `${c.gray}Just kidding. This is a fake OS.${c.reset}`,
+      '',
+    ].join('\r\n'),
+    action: { type: 'easter_egg', effect: 'matrix' },
+  }),
+
+  'npm install': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}npm warn deprecated everything@1.0.0${c.reset}`,
+      `${c.cyan}npm warn deprecated sanity@0.0.1${c.reset}`,
+      `${c.cyan}npm warn deprecated sleep@2.0.0${c.reset}`,
+      '',
+      `${c.green}added 999 packages in 4.20s${c.reset}`,
+      `${c.yellow}247 packages are looking for funding${c.reset}`,
+      `${c.gray}  run \`npm fund\` to find out more${c.reset}`,
+      `${c.red}3 critical vulnerabilities found${c.reset}`,
+      `${c.gray}  run \`npm audit fix\` to fix them${c.reset}`,
+      `${c.gray}(this is fine)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  quote: (): CommandResult => {
+    const quotes = [
+      'IISER Kolkata: where sleep is a myth and coffee is a food group.',
+      'SlashDot: we code, we design, we forget to eat.',
+      '25MS batch: came for science, stayed for the existential dread.',
+      'It works on my machine. — Every 25MS developer, ever.',
+      'The deadline is April 11. It is currently April 11. We are fine.',
+      'Our WiFi is down but our spirits are... also down.',
+      '404: Work-life balance not found.',
+      'In IISER we trust. In deadlines we panic.',
+    ]
+    const q = quotes[Math.floor(Math.random() * quotes.length)]
+    return { output: `\r\n${c.yellow}"${q}"${c.reset}\r\n` }
+  },
+
+  'font+': (): CommandResult => {
+    window.dispatchEvent(new CustomEvent('slashdot-font', { detail: { delta: 1 } }))
+    return { output: `\r\n${c.green}✓ Font size increased${c.reset}\r\n` }
+  },
+
+  'font-': (): CommandResult => {
+    window.dispatchEvent(new CustomEvent('slashdot-font', { detail: { delta: -1 } }))
+    return { output: `\r\n${c.green}✓ Font size decreased${c.reset}\r\n` }
+  },
+
+  'crt': (args: string[]): CommandResult => {
+    const on = args[0] === 'on'
+    const off = args[0] === 'off'
+    if (!on && !off) {
+      return { output: `\r\n${c.gray}Usage: crt on / crt off${c.reset}\r\n` }
+    }
+    document.querySelector('.scanlines')?.setAttribute(
+      'style', on ? 'opacity:1' : 'opacity:0'
+    )
+    return {
+      output: `\r\n${c.green}✓ CRT effect ${on ? 'enabled' : 'disabled'}${c.reset}\r\n`,
+    }
+  },
+
   // ── CURSOR ──────────────────────────────────────────────────────────────────
 
   cursor: (args: string[]): CommandResult => {
