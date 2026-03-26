@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import './Apps.css'
 import { teamMembers } from '../../data/team'
 import { techStack } from '../../data/techStack'
