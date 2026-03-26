@@ -488,6 +488,433 @@ export const easterEggs: Record<string, CommandHandler> = {
     }
   },
 
+  // ── NEW EASTER EGGS ─────────────────────────────────────────────────────────
+  'ls -la': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}total 42${c.reset}`,
+      `${c.white}drwxr-xr-x  slashdot  staff   .${c.reset}`,
+      `${c.white}drwxr-xr-x  slashdot  staff   ..${c.reset}`,
+      `${c.red}-rw-------  slashdot  staff   .secrets${c.reset}`,
+      `${c.red}-rw-------  slashdot  staff   .crush_name.txt${c.reset}`,
+      `${c.red}-rw-------  slashdot  staff   .actual_cgpa.txt${c.reset}`,
+      `${c.red}-rw-------  slashdot  staff   .number_of_bugs.log${c.reset}`,
+      `${c.red}-rw-------  slashdot  staff   .times_cried_over_code.txt${c.reset}`,
+      `${c.white}-rw-r--r--  slashdot  staff   about.txt${c.reset}`,
+      `${c.white}-rw-r--r--  slashdot  staff   README.md${c.reset}`,
+      `${c.white}-rwxr-xr-x  slashdot  staff   contact.sh${c.reset}`,
+      `${c.white}-rw-r--r--  slashdot  staff   team.db${c.reset}`,
+      `${c.white}-rw-r--r--  slashdot  staff   stack.log${c.reset}`,
+      '',
+      `${c.gray}Hint: try 'cat .secrets'${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'cat .secrets': (): CommandResult => ({
+    output: [
+      '',
+      `${c.red}Permission denied.${c.reset}`,
+      `${c.gray}(some things are better left unknown)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'cat .actual_cgpa.txt': (): CommandResult => ({
+    output: `\r\n${c.red}Permission denied. Even you don't want to know.${c.reset}\r\n`,
+  }),
+
+  'sudo apt-get install iiser-wifi': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}Reading package lists...${c.reset} Done`,
+      `${c.cyan}Building dependency tree...${c.reset} Done`,
+      `${c.cyan}Selecting package iiser-wifi...${c.reset}`,
+      `${c.yellow}Connecting to repository...${c.reset}`,
+      `${c.yellow}Connecting to repository...${c.reset}`,
+      `${c.yellow}Connecting to repository...${c.reset}`,
+      `${c.red}E: Failed to connect. Connection timed out.${c.reset}`,
+      `${c.red}E: Unable to locate package 'iiser-wifi'${c.reset}`,
+      `${c.gray}(The WiFi itself is preventing you from installing WiFi.)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  './run_exam.sh': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}Loading exam...${c.reset}`,
+      `${c.green}✓ Exam loaded${c.reset}`,
+      '',
+      `${c.white}┌─────────────────────────────────────────────────────┐${c.reset}`,
+      `${c.white}│  IISER Kolkata — End Semester Examination 2026      │${c.reset}`,
+      `${c.white}│  Subject: Everything You Never Studied              │${c.reset}`,
+      `${c.white}│  Time: 3 hours    Max Marks: 100                    │${c.reset}`,
+      `${c.white}├─────────────────────────────────────────────────────┤${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.white}│  Q1. Explain the universe. (10 marks)               │${c.reset}`,
+      `${c.white}│  Q2. Prove P = NP. Show all work. (20 marks)        │${c.reset}`,
+      `${c.white}│  Q3. What is the meaning of life? (42 marks)        │${c.reset}`,
+      `${c.white}│  Q4. Why did you join IISER? (28 marks)             │${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.white}│  Note: All questions are compulsory.                │${c.reset}`,
+      `${c.white}│  Note: No partial marking.                          │${c.reset}`,
+      `${c.white}│  Note: Good luck. You'll need it.                   │${c.reset}`,
+      `${c.white}└─────────────────────────────────────────────────────┘${c.reset}`,
+      '',
+      `${c.gray}Type 'sudo give me marks' to skip the exam.${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'import antigravity': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}import antigravity${c.reset}`,
+      '',
+      `${c.green}✓ antigravity module loaded${c.reset}`,
+      `${c.yellow}Weee! I'm flying!${c.reset}`,
+      '',
+      `${c.white}        o${c.reset}`,
+      `${c.white}       /|\\${c.reset}`,
+      `${c.white}       / \\${c.reset}`,
+      `${c.white}      ^^^^^${c.reset}`,
+      '',
+      `${c.gray}(xkcd.com/353)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'sudo chmod 777 life': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}chmod: changing permissions of 'life'...${c.reset}`,
+      `${c.green}✓ Done. You now have full permissions to life.${c.reset}`,
+      '',
+      `${c.white}rwxrwxrwx  you  life${c.reset}`,
+      '',
+      `${c.yellow}Warning: With great power comes great responsibility.${c.reset}`,
+      `${c.gray}Also your parents may revoke these permissions.${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'curl iiserkol.ac.in': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}curl: connecting to iiserkol.ac.in...${c.reset}`,
+      `${c.yellow}curl: (6) Could not resolve host: iiserkol.ac.in${c.reset}`,
+      `${c.red}curl: (7) Failed to connect: Network unreachable${c.reset}`,
+      `${c.gray}(Have you tried turning the WiFi off and on again?)${c.reset}`,
+      `${c.gray}(Trick question — it was never on.)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  nyan: (): CommandResult => ({
+    output: [
+      '',
+      `${c.magenta}+      o     +              o   ${c.reset}`,
+      `${c.magenta}    +             o     +       +${c.reset}`,
+      `${c.cyan}+--+--+--+--+--+--+--+--+--+--+${c.reset}`,
+      `${c.red}|  ${c.reset}${c.yellow}~(=^‥^)ノ彡☆${c.reset}             ${c.red}|${c.reset}`,
+      `${c.cyan}+--+--+--+--+--+--+--+--+--+--+${c.reset}`,
+      `${c.magenta}   +      +        +   o    +   ${c.reset}`,
+      '',
+      `${c.gray}Nyan nyan nyan nyan nyan! 🌈${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  yes: (): CommandResult => ({
+    output: [
+      '',
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.green}yes${c.reset}`,
+      `${c.gray}... (use Ctrl+C to stop, just kidding this already stopped)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  banner: (args: string[]): CommandResult => {
+    const text = args.join(' ') || 'SlashDot'
+    const line = '█'.repeat(text.length + 4)
+    return {
+      output: [
+        '',
+        `${c.green}${line}${c.reset}`,
+        `${c.green}█ ${c.yellow}${text.toUpperCase()} ${c.green}█${c.reset}`,
+        `${c.green}${line}${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  echo: (args: string[]): CommandResult => ({
+    output: `\r\n${c.white}${args.join(' ')}${c.reset}\r\n`,
+  }),
+
+  'cat /etc/passwd': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}root:x:0:0:root:/root:/bin/bash${c.reset}`,
+      `${c.white}slashdot:x:1000:1000:SlashDot OS User:/home/slashdot:/bin/slashdot-sh${c.reset}`,
+      `${c.white}sankhadeep:x:1001:1001:Sankhadeep Bera:/home/sankhadeep:/bin/bash${c.reset}`,
+      `${c.white}shuvam:x:1002:1002:Shuvam Banerji Seal:/home/shuvam:/bin/bash${c.reset}`,
+      `${c.white}anuprovo:x:1003:1003:Anuprovo Debnath:/home/anuprovo:/bin/bash${c.reset}`,
+      `${c.white}abhinav:x:1004:1004:Abhinav Dhingra:/home/abhinav:/bin/bash${c.reset}`,
+      `${c.white}exam_stress:x:9999:9999:unkillable:/proc/9999:/bin/panic${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  // ── TERMINAL POLISH ─────────────────────────────────────────────────────────
+  uptime: (): CommandResult => {
+    const mins = Math.floor(Math.random() * 120) + 10
+    const hrs = Math.floor(mins / 60)
+    const rem = mins % 60
+    return {
+      output: [
+        '',
+        `${c.white}System uptime: ${c.green}${hrs}h ${rem}m${c.reset}`,
+        `${c.white}Users logged in: ${c.green}1${c.reset} ${c.gray}(just you, alone, at ${new Date().toLocaleTimeString()})${c.reset}`,
+        `${c.white}Load average: ${c.yellow}4.20 3.14 2.71${c.reset}`,
+        `${c.white}Coffee consumed: ${c.red}∞ cups${c.reset}`,
+        `${c.white}Sleep hours: ${c.red}not enough${c.reset}`,
+        `${c.white}Bugs introduced today: ${c.red}${Math.floor(Math.random() * 20) + 3}${c.reset}`,
+        `${c.white}Bugs fixed today: ${c.green}${Math.floor(Math.random() * 5) + 1}${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  cal: (): CommandResult => {
+    const now = new Date()
+    const month = now.toLocaleString('default', { month: 'long' })
+    const year = now.getFullYear()
+    const firstDay = new Date(year, now.getMonth(), 1).getDay()
+    const daysInMonth = new Date(year, now.getMonth() + 1, 0).getDate()
+    const today = now.getDate()
+
+    let cal = `\r\n  ${c.cyan}${month} ${year}${c.reset}\r\n`
+    cal += `  ${c.gray}Su Mo Tu We Th Fr Sa${c.reset}\r\n  `
+
+    let day = 1
+    for (let i = 0; i < firstDay; i++) cal += '   '
+    for (let i = firstDay; i < 7; i++) {
+      cal += day === today
+        ? `${c.green}${String(day).padStart(2)}${c.reset} `
+        : `${c.white}${String(day).padStart(2)}${c.reset} `
+      day++
+    }
+    cal += '\r\n  '
+    while (day <= daysInMonth) {
+      for (let i = 0; i < 7 && day <= daysInMonth; i++) {
+        cal += day === today
+          ? `${c.green}${String(day).padStart(2)}${c.reset} `
+          : `${c.white}${String(day).padStart(2)}${c.reset} `
+        day++
+      }
+      cal += '\r\n  '
+    }
+    return { output: cal }
+  },
+
+  tree: (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}/home/slashdot${c.reset}`,
+      `${c.white}├── about.txt${c.reset}`,
+      `${c.white}├── README.md${c.reset}`,
+      `${c.white}├── contact.sh${c.reset}`,
+      `${c.white}├── team.db${c.reset}`,
+      `${c.white}├── stack.log${c.reset}`,
+      `${c.cyan}└── projects/${c.reset}`,
+      `${c.white}    ├── web-terminal.exe${c.reset}`,
+      `${c.white}    ├── particle-sim.bin${c.reset}`,
+      `${c.white}    └── algo-visualizer.run${c.reset}`,
+      '',
+      `${c.gray}3 directories, 8 files${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  stats: (): CommandResult => {
+    const hist = ((window as any).__slashdotHistory as string[]) ?? []
+    const unique = new Set(hist).size
+    const easter = hist.filter((c: string) =>
+      ['sudo party','matrix','vim','sl','cowsay','nyan','hack'].some(e => c.includes(e))
+    ).length
+    return {
+      output: [
+        '',
+        `${c.cyan}── Session Stats ──────────────────────${c.reset}`,
+        '',
+        `${c.white}Commands typed    ${c.reset}${c.green}${hist.length}${c.reset}`,
+        `${c.white}Unique commands   ${c.reset}${c.green}${unique}${c.reset}`,
+        `${c.white}Easter eggs found ${c.reset}${c.green}${easter}${c.reset}`,
+        `${c.white}Time wasted       ${c.reset}${c.yellow}priceless${c.reset}`,
+        `${c.white}Productivity      ${c.reset}${c.red}${Math.max(0, 100 - hist.length * 2)}%${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  reset: (): CommandResult => ({
+    output: '',
+    action: { type: 'easter_egg', effect: 'reset' },
+  }),
+
+  // ── FUN COMMANDS ────────────────────────────────────────────────────────────
+  'sudo give me a job': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}Sending resume to top tech companies...${c.reset}`,
+      '',
+      `${c.green}✓ Google    — Offer received: $450,000/yr + free food${c.reset}`,
+      `${c.green}✓ Meta      — Offer received: $420,000/yr + VR headset${c.reset}`,
+      `${c.green}✓ Apple     — Offer received: $400,000/yr + MacBook Pro${c.reset}`,
+      `${c.green}✓ Microsoft — Offer received: $380,000/yr + free Windows${c.reset}`,
+      `${c.green}✓ Anthropic — Offer received: work with Claude all day${c.reset}`,
+      `${c.green}✓ IISER     — Offer received: PhD stipend ₹37,000/month${c.reset}`,
+      '',
+      `${c.yellow}Recommended: Take the Anthropic offer.${c.reset}`,
+      `${c.gray}(All offers are fake. Please update your LinkedIn.)${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'sudo make me coffee': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}Initializing coffee module...${c.reset}`,
+      `${c.green}✓ Water heated to 94°C${c.reset}`,
+      `${c.green}✓ Beans ground (medium-fine)${c.reset}`,
+      `${c.green}✓ Espresso extracted (28 seconds)${c.reset}`,
+      `${c.green}✓ Milk steamed to 65°C${c.reset}`,
+      '',
+      `${c.white}    ( (${c.reset}`,
+      `${c.white}     ) )${c.reset}`,
+      `${c.white}  ........${c.reset}`,
+      `${c.white}  |      |]${c.reset}`,
+      `${c.white}  \\      /${c.reset}`,
+      `${c.white}   \`----'${c.reset}`,
+      '',
+      `${c.green}☕ Your coffee is ready!${c.reset}`,
+      `${c.gray}Caution: May cause inability to sleep and sudden urge to code.${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  leetcode: (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}┌─────────────────────────────────────────────────────┐${c.reset}`,
+      `${c.cyan}│  LeetCode — Daily Challenge                         │${c.reset}`,
+      `${c.cyan}├─────────────────────────────────────────────────────┤${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.white}│  Problem #420: Graduate Without Crying              │${c.reset}`,
+      `${c.yellow}│  Difficulty: IMPOSSIBLE                             │${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.white}│  Given: 4 years of IISER                            │${c.reset}`,
+      `${c.white}│  Find: Work-life balance                            │${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.white}│  Constraints:                                       │${c.reset}`,
+      `${c.white}│  - Sleep ≤ 4 hours                                  │${c.reset}`,
+      `${c.white}│  - Coffee ≥ 5 cups/day                              │${c.reset}`,
+      `${c.white}│  - Deadlines are always tomorrow                    │${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.red}│  Acceptance rate: 0.0%                              │${c.reset}`,
+      `${c.white}│                                                     │${c.reset}`,
+      `${c.cyan}└─────────────────────────────────────────────────────┘${c.reset}`,
+      '',
+      `${c.gray}Hint: There is no solution. This is the way.${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'iiser wifi': (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}PING iiser-wifi (10.0.0.1) 56 bytes of data.${c.reset}`,
+      `${c.red}Request timeout for icmp_seq 0${c.reset}`,
+      `${c.red}Request timeout for icmp_seq 1${c.reset}`,
+      `${c.red}Request timeout for icmp_seq 2${c.reset}`,
+      `${c.red}Request timeout for icmp_seq 3${c.reset}`,
+      '',
+      `${c.gray}--- iiser-wifi ping statistics ---${c.reset}`,
+      `${c.white}4 packets transmitted, 0 received, ${c.red}100% packet loss${c.reset}`,
+      '',
+      `${c.yellow}Diagnosis: WiFi is being WiFi.${c.reset}`,
+      `${c.gray}Solution: Use mobile data. Or pray.${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  'exam physics': (args: string[]): CommandResult => {
+    const subject = args[0] || 'physics'
+    return {
+      output: [
+        '',
+        `${c.cyan}Generating ${subject} exam...${c.reset}`,
+        '',
+        `${c.white}┌─────────────────────────────────────────────────────┐${c.reset}`,
+        `${c.white}│  IISER Kolkata — ${subject.toUpperCase().padEnd(35)}│${c.reset}`,
+        `${c.white}├─────────────────────────────────────────────────────┤${c.reset}`,
+        `${c.white}│  Q1. Derive everything from first principles.(100m) │${c.reset}`,
+        `${c.white}│  Q2. Prove your existence using ${subject}. (∞ marks)  │${c.reset}`,
+        `${c.white}│  Q3. Why? (420 marks)                               │${c.reset}`,
+        `${c.white}└─────────────────────────────────────────────────────┘${c.reset}`,
+        '',
+        `${c.gray}Type 'sudo give me marks' to auto-submit.${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  exam: (args: string[]): CommandResult => {
+    return easterEggs['exam physics'](args)
+  },
+  
+  wallpaper: (args: string[]): CommandResult => {
+    const color = args[0]?.toLowerCase()
+    const wallpapers: Record<string, string> = {
+      dark:    '#050505',
+      green:   '#001a00',
+      blue:    '#000d1a',
+      purple:  '#0d0014',
+      red:     '#1a0000',
+      amber:   '#1a0f00',
+      matrix:  '#001200',
+      default: '#050505',
+    }
+    if (!color || !wallpapers[color]) {
+      return {
+        output: [
+          '',
+          `${c.cyan}Available wallpapers:${c.reset}`,
+          `  ${c.white}dark, green, blue, purple, red, amber, matrix, default${c.reset}`,
+          `${c.gray}Usage: wallpaper <name>${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+    document.querySelector('.desktop')?.setAttribute(
+      'style', `background-color: ${wallpapers[color]}`
+    )
+    return {
+      output: `\r\n${c.green}✓ Wallpaper changed to: ${color}${c.reset}\r\n`,
+    }
+  },
+  
   // ── CURSOR ──────────────────────────────────────────────────────────────────
 
   cursor: (args: string[]): CommandResult => {
@@ -632,14 +1059,7 @@ export const easterEggs: Record<string, CommandHandler> = {
     return { output: `\r\n${c.yellow}"${q}"${c.reset}\r\n` }
   },
 
-  man: (args: string[]): CommandResult => ({
-    output: [
-      '',
-      `${c.cyan}Manual page: ${args[0] || '???'}${c.reset}`,
-      `${c.gray}No manual entry. Have you tried 'help'?${c.reset}`,
-      '',
-    ].join('\r\n'),
-  }),
+  
 
   // ── VIM ─────────────────────────────────────────────────────────────────────
   vim: (args: string[]): CommandResult => {

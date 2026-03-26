@@ -231,3 +231,28 @@
 .yellow { color: #ffd700; }
 .gray   { color: #555; }
 .white  { color: #e0e0e0; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes blink-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+.blink-green {
+  animation: blink-slow 2s ease-in-out infinite;
+}
+
+.neofetch-iiser {
+  font-size: 10px;
+  color: #00ff46;
+  letter-spacing: 0.2em;
+  margin-top: 4px;
+}

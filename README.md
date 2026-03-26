@@ -37,6 +37,22 @@ SlashDot OS turns the SlashDot club website into a fake operating system running
 - Team — `open team`
 - Contact — `open contact`
 
+### Terminal Commands
+```bash
+help              → all commands
+ls / cd / cat     → navigate virtual filesystem
+neofetch          → system info + logos
+whoami            → user info
+uname -a          → OS info
+date              → current date/time
+ping <host>       → ping a host
+history           → command history
+fullscreen        → enter fullscreen
+exit-fullscreen   → exit fullscreen
+toggle-fullscreen → toggle fullscreen
+clear             → clear terminal
+```
+
 ### Terminal Customization
 ```bash
 cursor block/bar/underline  → change cursor style
@@ -44,38 +60,59 @@ theme green/amber/blue/red/purple → switch theme
 font+                       → increase font size
 font-                       → decrease font size
 crt on/off                  → toggle CRT scanlines
-fullscreen                  → enter fullscreen
-exit-fullscreen             → exit fullscreen
-toggle-fullscreen           → toggle fullscreen
+wallpaper <name>            → change desktop background
+stats                       → session statistics
+uptime                      → system uptime
+cal                         → current month calendar
+tree                        → file system tree
+echo <text>                 → print text
+banner <text>               → big ASCII text
+reset                       → reset terminal
 ```
 
-### Easter Eggs
+### Easter Eggs (50+ hidden commands)
 ```bash
-sudo party              → confetti explosion
-matrix                  → matrix rain effect
-hack                    → fake hacking sequence
-vim about.txt           → fake vim editor
-apt install <pkg>       → fake package manager
-npm install             → 999 packages, 3 vulnerabilities
-ssh batch@iiserkol      → fake SSH into IISER server
-git log                 → fake commit history
-git blame               → blame someone for bugs
-git status              → show working tree status
-git push                → fake push to GitHub
-cowsay <text>           → a cow says things
-sl                      → steam locomotive
-fortune                 → random programming quote
-quote                   → random IISER/SlashDot quote
-procrastinate           → fake SlashTube
-weather                 → IISER campus weather
-top                     → fake process manager
-members                 → SlashDot office bearers
-changelog               → fake OS changelog
-panic                   → kernel panic screen
-reboot                  → recover from panic
-sudo give me marks      → perfect grades
-sudo make me a sandwich → xkcd reference
-sudo make me a cgpa     → perfect 10.0 CGPA
+sudo party                     → confetti explosion
+matrix                         → matrix rain effect
+hack                           → fake hacking sequence
+nyan                           → nyan cat
+vim about.txt                  → fake vim editor
+apt install <pkg>              → fake package manager
+npm install                    → 999 packages, 3 vulnerabilities
+ssh batch@iiserkol             → fake SSH into IISER server
+git log                        → fake commit history
+git blame                      → blame someone for bugs
+git status                     → show working tree status
+git push                       → fake push to GitHub
+ls -la                         → hidden files revealed
+cat /etc/passwd                → fake password file
+import antigravity             → Python easter egg
+sudo chmod 777 life            → full permissions to life
+curl iiserkol.ac.in            → WiFi always fails
+sudo apt-get install iiser-wifi → WiFi never installs
+./run_exam.sh                  → fake exam paper
+cowsay <text>                  → a cow says things
+sl                             → steam locomotive
+fortune                        → random programming quote
+quote                          → random IISER quote
+procrastinate                  → fake SlashTube
+weather                        → IISER campus weather
+top                            → fake process manager
+members                        → SlashDot office bearers
+changelog                      → fake OS changelog
+panic                          → kernel panic screen
+reboot                         → recover from panic
+leetcode                       → daily challenge
+iiser wifi                     → ping test (always fails)
+exam <subject>                 → fake exam paper
+sudo give me marks             → perfect grades
+sudo give me a job             → job offers from Google etc
+sudo make me a sandwich        → xkcd reference
+sudo make me coffee            → coffee brewing animation
+sudo make me a cgpa            → perfect 10.0 CGPA
+yes                            → spams yes
+banner <text>                  → big ASCII banner
+echo <text>                    → prints text
 ```
 
 ## Tech Stack

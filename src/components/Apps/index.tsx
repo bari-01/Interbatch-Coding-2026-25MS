@@ -233,8 +233,9 @@ export function NeofetchApp() {
           <p className="neofetch-user cyan">
             {'slashdot'}
             <span className="gray">{'@'}</span>
-            <span className="yellow">{'25ms-os'}</span>
+            <span className="yellow blink">{'25ms-os'}</span>
           </p>
+          <p className="neofetch-iiser blink-green">IISER KOLKATA</p>
           <p className="neofetch-sep gray">{'─'.repeat(22)}</p>
           {info.map(function(item) {
             return (
@@ -261,6 +262,55 @@ export function NeofetchApp() {
         <div className="logo-placeholder">
           <img src="./slashdot_logo.png" alt="SlashDot" className="logo-img" />
         </div>
+      </div>
+    </div>
+  )
+}
+export function ClockApp() {
+  const [time, setTime] = useState(new Date())
+
+  useEffect(function() {
+    const t = setInterval(function() { setTime(new Date()) }, 1000)
+    return function() { clearInterval(t) }
+  }, [])
+
+  const hours   = String(time.getHours()).padStart(2, '0')
+  const minutes = String(time.getMinutes()).padStart(2, '0')
+  const seconds = String(time.getSeconds()).padStart(2, '0')
+  const date    = time.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+
+  const progress = (time.getSeconds() / 60) * 100
+
+  return (
+    <div className="app-body clock-app">
+      <p className="app-label cyan">// clock.app</p>
+      <div className="clock-display">
+        <span className="clock-hours">{hours}</span>
+        <span className="clock-colon">:</span>
+        <span className="clock-minutes">{minutes}</span>
+        <span className="clock-colon">:</span>
+        <span className="clock-seconds">{seconds}</span>
+      </div>
+      <div className="clock-progress">
+        <div className="clock-progress-fill" style={{ width: progress + '%' }} />
+      </div>
+      <p className="clock-date">{date}</p>
+      <div className="app-divider" />
+      <div className="clock-stats">
+        {[
+          ['Timezone',  Intl.DateTimeFormat().resolvedOptions().timeZone],
+          ['Unix time', String(Math.floor(time.getTime() / 1000))],
+          ['Day of year', String(Math.floor((time.getTime() - new Date(time.getFullYear(), 0, 0).getTime()) / 86400000))],
+          ['Week',      String(Math.ceil((time.getDate() + new Date(time.getFullYear(), time.getMonth(), 1).getDay()) / 7))],
+          ['Deadline',  'April 11, 2026 — Submit now!'],
+        ].map(function(item) {
+          return (
+            <div key={item[0]} className="app-cmd-row">
+              <span className="app-cmd">{item[0]}</span>
+              <span className="app-cmd-desc">{item[1]}</span>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

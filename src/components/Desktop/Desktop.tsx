@@ -19,6 +19,7 @@ const ICONS: DesktopIcon[] = [
   { appId: 'stack',    title: 'stack.log',    label: 'Tech Stack', icon: '⚙'  },
   { appId: 'contact',  title: 'contact.sh',   label: 'Contact',    icon: '@'  },
   { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥' },
+  { appId: 'clock',    title: 'clock.app',    label: 'Clock',      icon: '⏰' },
 ]
 
 interface ContextMenu {
@@ -197,6 +198,19 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
           >
             <span className="taskbar-logo-text">SlashDot</span>
             <span className="taskbar-logo-badge">OS</span>
+          </button>
+          <button
+            className="taskbar-minimize-all"
+            onClick={function() {
+              windows.forEach(function(w) {
+                if (!w.isMinimized) onFocusWindow(w.id)
+              })
+              const event = new CustomEvent('slashdot-minimize-all')
+              window.dispatchEvent(event)
+            }}
+            title="Minimize all windows"
+          >
+            ▂
           </button>
         </div>
 

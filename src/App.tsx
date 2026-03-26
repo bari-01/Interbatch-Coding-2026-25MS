@@ -67,6 +67,7 @@ function AppContent({ appId }: { appId: AppId }) {
     case 'stack':    return <TechStackApp />
     case 'contact':  return <ContactApp />
     case 'neofetch': return <NeofetchApp />
+    case 'clock':    return <ClockApp />
     default:         return null
   }
 }
@@ -105,11 +106,21 @@ export default function App() {
     }
   }, [openWindow, isMobile])
 
+  useEffect(() => {
+    const handler = () => {
+      windows.forEach(w => minimizeWindow(w.id))
+    }
+    window.addEventListener('slashdot-minimize-all', handler)
+    return () => window.removeEventListener('slashdot-minimize-all', handler)
+  }, [windows, minimizeWindow])
+
   const handleEasterEgg = useCallback((effect: string) => {
     if (effect === 'panic') {
       setKernelPanic(true)
     } else if (effect === 'reboot') {
       setKernelPanic(false)
+      window.location.reload()
+    } else if (effect === 'reset') {
       window.location.reload()
     } else {
       setEasterEgg(effect)
