@@ -5,6 +5,7 @@ import { Desktop } from './components/Desktop/Desktop'
 import { AppWindow } from './components/WindowManager/AppWindow'
 import { TerminalWindow } from './components/Terminal/TerminalWindow'
 import { Confetti, MatrixRain } from './components/Desktop/EasterEggs'
+import { KernelPanic } from './components/Apps/KernelPanic'
 import {
   HomeApp, AboutApp, TeamApp,
   TechStackApp, ContactApp, NeofetchApp,
@@ -83,6 +84,7 @@ function useIsMobile() {
 export default function App() {
   const [booted, setBooted] = useState(false)
   const [easterEgg, setEasterEgg] = useState<string | null>(null)
+  const [kernelPanic, setKernelPanic] = useState(false)
   const [mobilePage, setMobilePage] = useState<AppId | null>(null)
   const isMobile = useIsMobile()
 
@@ -104,7 +106,14 @@ export default function App() {
   }, [openWindow, isMobile])
 
   const handleEasterEgg = useCallback((effect: string) => {
-    setEasterEgg(effect)
+    if (effect === 'panic') {
+      setKernelPanic(true)
+    } else if (effect === 'reboot') {
+      setKernelPanic(false)
+      window.location.reload()
+    } else {
+      setEasterEgg(effect)
+    }
   }, [])
 
   const handleRestoreWindow = useCallback((id: string) => {
@@ -237,6 +246,9 @@ export default function App() {
       )}
       {easterEgg === 'matrix' && (
         <MatrixRain onDone={function() { setEasterEgg(null) }} />
+      )}
+      {kernelPanic && (
+        <KernelPanic onRecover={function() { setKernelPanic(false) }} />
       )}
     </div>
   )

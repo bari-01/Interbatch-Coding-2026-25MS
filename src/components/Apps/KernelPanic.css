@@ -1,0 +1,91 @@
+.kernel-panic {
+  position: fixed;
+  inset: 0;
+  background: #0000aa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9800;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 32px;
+}
+
+.kp-content {
+  max-width: 700px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.kp-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #aaaaaa;
+  padding: 4px 8px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.kp-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.3);
+  margin: 12px 0;
+}
+
+.kp-ascii {
+  font-size: clamp(6px, 1vw, 10px);
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 8px 0;
+}
+
+.kp-error {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.kp-desc {
+  color: #ccccff;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.kp-details {
+  margin: 12px 0;
+  font-size: 12px;
+  color: #aaaaff;
+  line-height: 2;
+}
+
+.kp-stack {
+  font-size: 12px;
+  color: #ffffff;
+  margin: 8px 0;
+}
+
+.kp-trace {
+  font-size: 11px;
+  color: #aaaaff;
+  line-height: 1.8;
+  margin: 4px 0;
+}
+
+.kp-recover {
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 16px;
+}
+
+.kp-countdown {
+  color: #ffff00;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.kp-hint {
+  font-size: 11px;
+  color: #aaaaaa;
+  margin-top: 4px;
+}

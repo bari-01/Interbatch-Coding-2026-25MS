@@ -70,6 +70,14 @@ sudo give me marks      → perfect grades
 sudo make me a sandwich → xkcd reference
 sudo make me a cgpa     → perfect 10.0 CGPA
 theme green/amber/blue  → change terminal theme
+git log                 → fake commit history
+git blame               → blame someone for bugs
+git status              → show working tree status
+panic                   → kernel panic screen
+reboot                  → recover from panic
+changelog               → fake OS changelog
+members                 → SlashDot office bearers
+cursor block/bar        → change cursor style
 ```
 
 ## Tech Stack
@@ -120,9 +128,9 @@ slashdot-os/
 
 ## Team
 
-| Name | Role | Batch |
-|------|------|-------|
-| Sankhadeep Bera | Lead Developer | 25MS |
+| Name | Role | Batch | Email |
+|------|------|-------|-------|
+| Sankhadeep Bera | Lead Developer | 25MS | sb25ms227@iiserkol.ac.in |
 
 ## Deployment
 

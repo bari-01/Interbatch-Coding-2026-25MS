@@ -45,14 +45,15 @@
 }
 
 /* Desktop icons column on the left */
-.desktop-icons {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.desktop-icons-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
   z-index: 1;
+}
+
+.desktop-icons-layer .desktop-icon {
+  pointer-events: all;
 }
 
 .desktop-icon {

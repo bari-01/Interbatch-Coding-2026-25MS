@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { AppId, WindowState } from '../../types'
 import { toggleMute, isMuted } from '../../utils/sounds'
 import { Particles } from './Particles'
@@ -26,6 +26,11 @@ interface ContextMenu {
   y: number
 }
 
+interface IconPosition {
+  x: number
+  y: number
+}
+
 interface Props {
   windows: WindowState[]
   onOpenWindow: (appId: AppId, title: string) => void
@@ -37,6 +42,10 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
   const [time, setTime] = useState(new Date())
   const [contextMenu, setContextMenu] = useState<ContextMenu | null>(null)
   const [muted, setMuted] = useState(false)
+  const [iconPositions, setIconPositions] = useState<Record<string, IconPosition>>(
+    Object.fromEntries(ICONS.map((icon, i) => [icon.appId, { x: 16, y: 16 + i * 80 }]))
+  )
+  const draggingIcon = useRef<{ appId: string; startX: number; startY: number; origX: number; origY: number } | null>(null)
 
   useEffect(function() {
     const t = setInterval(function() { setTime(new Date()) }, 1000)
@@ -80,14 +89,45 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
       <Particles />
       <div className="scanlines" />
 
-      <div className="desktop-icons">
+      <div className="desktop-icons-layer">
         {ICONS.map(function(icon) {
+          const pos = iconPositions[icon.appId] ?? { x: 16, y: 16 }
           return (
             <button
               key={icon.appId}
               className="desktop-icon"
+              style={{ position: 'fixed', left: pos.x, top: pos.y }}
               onDoubleClick={function() { onOpenWindow(icon.appId, icon.title) }}
               title={'Double-click to open ' + icon.label}
+              onMouseDown={function(e) {
+                e.stopPropagation()
+                draggingIcon.current = {
+                  appId: icon.appId,
+                  startX: e.clientX,
+                  startY: e.clientY,
+                  origX: pos.x,
+                  origY: pos.y,
+                }
+                const onMove = function(me: MouseEvent) {
+                  if (!draggingIcon.current) return
+                  const dx = me.clientX - draggingIcon.current.startX
+                  const dy = me.clientY - draggingIcon.current.startY
+                  setIconPositions(prev => ({
+                    ...prev,
+                    [draggingIcon.current!.appId]: {
+                      x: Math.max(0, draggingIcon.current!.origX + dx),
+                      y: Math.max(0, draggingIcon.current!.origY + dy),
+                    }
+                  }))
+                }
+                const onUp = function() {
+                  draggingIcon.current = null
+                  document.removeEventListener('mousemove', onMove)
+                  document.removeEventListener('mouseup', onUp)
+                }
+                document.addEventListener('mousemove', onMove)
+                document.addEventListener('mouseup', onUp)
+              }}
             >
               <span className="desktop-icon-glyph">{icon.icon}</span>
               <span className="desktop-icon-label">{icon.label}</span>

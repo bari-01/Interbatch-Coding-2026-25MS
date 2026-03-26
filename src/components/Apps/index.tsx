@@ -168,7 +168,7 @@ export function TechStackApp() {
 export function ContactApp() {
   const contactInfo = [
     ['GitHub', 'github.com/berasankhadeep20-lang'],
-    ['Email', 'yourname@iiserkol.ac.in'],
+    ['Email', 'sb25ms227@iiserkol.ac.in'],
     ['Club', 'SlashDot — IISER Kolkata'],
     ['Competition', 'Inter-Batch Web Dev 2026'],
   ]

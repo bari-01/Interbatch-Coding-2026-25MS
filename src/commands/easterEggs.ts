@@ -68,6 +68,16 @@ export const easterEggs: Record<string, CommandHandler> = {
     action: { type: 'clear' },
   }),
 
+  panic: (): CommandResult => ({
+    output: `\r\n${c.red}KERNEL PANIC — initiating...${c.reset}\r\n`,
+    action: { type: 'easter_egg', effect: 'panic' },
+  }),
+
+  reboot: (): CommandResult => ({
+    output: `\r\n${c.green}Rebooting SlashDot OS...${c.reset}\r\n`,
+    action: { type: 'easter_egg', effect: 'reboot' },
+  }),
+
   // ── THEME ───────────────────────────────────────────────────────────────────
   theme: (args: string[]): CommandResult => {
     const name = args[0]?.toLowerCase()
@@ -241,6 +251,196 @@ export const easterEggs: Record<string, CommandHandler> = {
         '',
         `${c.gray}Press Ctrl+C to stop (just kidding, type 'clear' instead)${c.reset}`,
         `${c.gray}PID 9999 cannot be killed. It never can.${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  // ── GIT LOG ─────────────────────────────────────────────────────────────────
+  'git': (args: string[]): CommandResult => {
+    const sub = args[0]
+
+    if (sub === 'log') {
+      const commits = [
+        { hash: 'a3f9d2c', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 23:58:00 2026', msg: 'final final FINAL submission (for real this time)' },
+        { hash: 'b2e1f8a', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 23:30:00 2026', msg: 'fix: removed the thing that broke the other thing' },
+        { hash: 'c9d4e7b', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 22:15:00 2026', msg: 'feat: added ssh easter egg (very important)' },
+        { hash: 'd1a6c3f', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 20:00:00 2026', msg: 'fix: why was the logo broken AGAIN' },
+        { hash: 'e8b2d9a', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 18:45:00 2026', msg: 'feat: particles go brrr' },
+        { hash: 'f4c7e1b', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 16:30:00 2026', msg: 'chore: removed 47 console.log statements' },
+        { hash: 'g3d8f2c', author: 'Sankhadeep Bera',  date: 'Thu Apr 10 14:00:00 2026', msg: 'feat: apt install friendship (it works)' },
+        { hash: 'h1e9a4d', author: 'Sankhadeep Bera',  date: 'Wed Apr 09 23:00:00 2026', msg: 'fix: TypeScript errors (there were 47)' },
+        { hash: 'i7f2b8e', author: 'Sankhadeep Bera',  date: 'Wed Apr 09 20:00:00 2026', msg: 'feat: boot screen now goes bleep bloop' },
+        { hash: 'j5a1c9f', author: 'Sankhadeep Bera',  date: 'Wed Apr 09 15:00:00 2026', msg: 'init: initial commit (nothing works)' },
+      ]
+      return {
+        output: [
+          '',
+          ...commits.map(commit => [
+            `${c.yellow}commit ${commit.hash}${c.reset}`,
+            `${c.white}Author: ${commit.author}${c.reset}`,
+            `${c.white}Date:   ${commit.date}${c.reset}`,
+            '',
+            `    ${c.white}${commit.msg}${c.reset}`,
+            '',
+          ].join('\r\n')),
+        ].join('\r\n'),
+      }
+    }
+
+    if (sub === 'blame') {
+      const lines = [
+        { line: 1,  author: 'Sankhadeep',  code: 'const os = new SlashDotOS()' },
+        { line: 2,  author: 'Sankhadeep',  code: 'os.boot() // this took 3 hours' },
+        { line: 3,  author: 'Sankhadeep',  code: 'os.loadDesktop()' },
+        { line: 4,  author: 'Sankhadeep',  code: 'os.openTerminal() // why is it broken' },
+        { line: 5,  author: 'Sankhadeep',  code: 'os.pray() // please work' },
+        { line: 6,  author: 'Sankhadeep',  code: '// TODO: fix this before deadline' },
+        { line: 7,  author: 'Sankhadeep',  code: '// TODO: fix the other thing too' },
+        { line: 8,  author: 'Sankhadeep',  code: 'os.submit() // fingers crossed' },
+      ]
+      return {
+        output: [
+          '',
+          ...lines.map(l =>
+            `${c.yellow}${String(l.line).padStart(3)}${c.reset} ${c.cyan}(${l.author.padEnd(12)})${c.reset} ${c.white}${l.code}${c.reset}`
+          ),
+          '',
+          `${c.gray}git blame: All blame goes to Sankhadeep. As always.${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+
+    if (sub === 'status') {
+      return {
+        output: [
+          '',
+          `${c.cyan}On branch main${c.reset}`,
+          `${c.cyan}Your branch is ahead of 'origin/main' by 1 commit.${c.reset}`,
+          '',
+          `${c.red}Changes not staged for commit:${c.reset}`,
+          `  ${c.red}modified:   src/commands/easterEggs.ts${c.reset}`,
+          `  ${c.red}modified:   src/data/team.ts${c.reset}`,
+          `  ${c.red}modified:   README.md${c.reset}`,
+          '',
+          `${c.green}Untracked files:${c.reset}`,
+          `  ${c.green}src/components/Desktop/Particles.tsx${c.reset}`,
+          `  ${c.green}public/slashdot_logo.png${c.reset}`,
+          '',
+          `${c.gray}no changes added to commit (use "git add" and/or "git commit -a")${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+
+    if (sub === 'commit') {
+      return {
+        output: [
+          '',
+          `${c.green}[main a3f9d2c] ${args.slice(2).join(' ') || 'wip: changes'}${c.reset}`,
+          `${c.white} 3 files changed, 42 insertions(+), 7 deletions(-)${c.reset}`,
+          `${c.gray}(not really, this is a fake OS)${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+
+    if (sub === 'push') {
+      return {
+        output: [
+          '',
+          `${c.cyan}Enumerating objects: 5, done.${c.reset}`,
+          `${c.cyan}Counting objects: 100% (5/5), done.${c.reset}`,
+          `${c.cyan}Delta compression using up to 8 threads${c.reset}`,
+          `${c.cyan}Compressing objects: 100% (3/3), done.${c.reset}`,
+          `${c.green}To https://github.com/berasankhadeep20-lang/Interbatch-Coding-2026-25MS.git${c.reset}`,
+          `${c.green}   b2e1f8a..a3f9d2c  main -> main${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+
+    return {
+      output: [
+        '',
+        `${c.cyan}usage: git <command>${c.reset}`,
+        '',
+        `${c.white}Available commands:${c.reset}`,
+        `  ${c.green}git log${c.reset}      ${c.gray}Show commit history${c.reset}`,
+        `  ${c.green}git blame${c.reset}    ${c.gray}Blame someone for bugs${c.reset}`,
+        `  ${c.green}git status${c.reset}   ${c.gray}Show working tree status${c.reset}`,
+        `  ${c.green}git commit${c.reset}   ${c.gray}Record changes${c.reset}`,
+        `  ${c.green}git push${c.reset}     ${c.gray}Push to remote${c.reset}`,
+        '',
+      ].join('\r\n'),
+    }
+  },
+
+  // ── CHANGELOG ───────────────────────────────────────────────────────────────
+  changelog: (): CommandResult => ({
+    output: [
+      '',
+      `${c.cyan}┌─────────────────────────────────────────────────┐${c.reset}`,
+      `${c.cyan}│         SlashDot OS — Changelog                 │${c.reset}`,
+      `${c.cyan}└─────────────────────────────────────────────────┘${c.reset}`,
+      '',
+      `${c.yellow}v2026.1.0${c.reset} ${c.gray}(2026-04-11 — submission day)${c.reset}`,
+      `  ${c.green}+${c.reset} Added everything at 3am`,
+      `  ${c.green}+${c.reset} Added particles (very important)`,
+      `  ${c.green}+${c.reset} Added sudo give me marks`,
+      `  ${c.green}+${c.reset} Added 47 easter eggs`,
+      `  ${c.red}-${c.reset} Removed sleep from developer's schedule`,
+      `  ${c.red}-${c.reset} Removed sanity (see apt install sanity)`,
+      '',
+      `${c.yellow}v2026.0.9${c.reset} ${c.gray}(2026-04-10)${c.reset}`,
+      `  ${c.green}+${c.reset} Boot screen now types itself dramatically`,
+      `  ${c.green}+${c.reset} Added kernel panic (for the vibes)`,
+      `  ${c.green}+${c.reset} SSH into IISER now works (fake)`,
+      `  ${c.red}-${c.reset} Removed working sleep command`,
+      `  ${c.gray}~${c.reset} Fixed TypeScript errors (introduced 12 more)`,
+      '',
+      `${c.yellow}v2026.0.5${c.reset} ${c.gray}(2026-04-08)${c.reset}`,
+      `  ${c.green}+${c.reset} Added xterm.js terminal`,
+      `  ${c.green}+${c.reset} Added draggable windows`,
+      `  ${c.green}+${c.reset} Added vim (you can't exit it)`,
+      `  ${c.gray}~${c.reset} Logos finally show up on GitHub Pages`,
+      `  ${c.red}-${c.reset} Accidentally deleted node_modules 3 times`,
+      '',
+      `${c.yellow}v2026.0.1${c.reset} ${c.gray}(2026-03-22 — competition start)${c.reset}`,
+      `  ${c.green}+${c.reset} Initial commit`,
+      `  ${c.green}+${c.reset} Added README.md`,
+      `  ${c.red}-${c.reset} Nothing works`,
+      `  ${c.gray}~${c.reset} Decided to make an OS simulator at 11pm`,
+      '',
+      `${c.gray}For full history: git log${c.reset}`,
+      '',
+    ].join('\r\n'),
+  }),
+
+  // ── CURSOR ──────────────────────────────────────────────────────────────────
+
+  cursor: (args: string[]): CommandResult => {
+    const style = args[0]?.toLowerCase()
+    const valid = ['block', 'bar', 'underline']
+
+    if (!style || !valid.includes(style)) {
+      return {
+        output: [
+          '',
+          `${c.cyan}Usage: cursor <style>${c.reset}`,
+          `${c.gray}Available: block, bar, underline${c.reset}`,
+          '',
+        ].join('\r\n'),
+      }
+    }
+
+    window.dispatchEvent(new CustomEvent('slashdot-cursor', { detail: { style } }))
+
+    return {
+      output: [
+        '',
+        `${c.green}✓ Cursor style changed to: ${style}${c.reset}`,
         '',
       ].join('\r\n'),
     }

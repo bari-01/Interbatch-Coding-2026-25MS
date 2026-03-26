@@ -61,6 +61,13 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
     term.open(containerRef.current)
     fitAddon.fit()
 
+    // Listen for cursor style changes
+    const cursorHandler = (e: Event) => {
+      const { style } = (e as CustomEvent).detail
+      term.options.cursorStyle = style as 'block' | 'bar' | 'underline'
+    }
+    window.addEventListener('slashdot-cursor', cursorHandler)
+
     // Listen for theme changes
     const themeHandler = (e: Event) => {
       const { name } = (e as CustomEvent).detail
@@ -205,6 +212,7 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
     return function() {
       ro.disconnect()
       term.dispose()
+      window.removeEventListener('slashdot-cursor', cursorHandler)
       window.removeEventListener('slashdot-theme', themeHandler)
     }
 
