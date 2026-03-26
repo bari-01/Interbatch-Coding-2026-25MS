@@ -40,10 +40,10 @@ export function HomeApp() {
       </div>
       <div className="app-logos">
         <div className="logo-placeholder">
-          <img src="/iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
+          <img src="./iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
         </div>
         <div className="logo-placeholder">
-          <img src="/slashdot_logo.png" alt="SlashDot" className="logo-img" />
+          <img src="./slashdot_logo.png" alt="SlashDot" className="logo-img" />
         </div>
       </div>
     </div>
@@ -89,10 +89,10 @@ export function AboutApp() {
       <div className="app-divider" />
       <div className="app-logos">
         <div className="logo-placeholder">
-          <img src="/iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
+          <img src="./iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
         </div>
         <div className="logo-placeholder">
-          <img src="/slashdot_logo.png" alt="SlashDot" className="logo-img" />
+          <img src="./slashdot_logo.png" alt="SlashDot" className="logo-img" />
         </div>
       </div>
     </div>
@@ -256,10 +256,10 @@ export function NeofetchApp() {
       <div className="app-divider" />
       <div className="app-logos">
         <div className="logo-placeholder">
-          <img src="/iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
+          <img src="./iiserkol_logo.png" alt="IISER Kolkata" className="logo-img" />
         </div>
         <div className="logo-placeholder">
-          <img src="/slashdot_logo.png" alt="SlashDot" className="logo-img" />
+          <img src="./slashdot_logo.png" alt="SlashDot" className="logo-img" />
         </div>
       </div>
     </div>
