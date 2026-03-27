@@ -15,6 +15,10 @@ SlashDot OS turns the SlashDot club website into a fake operating system running
 
 ## Features
 
+### Games
+- **Asteroids** — shoot asteroids, split them into smaller ones, 3 lives, levels get harder
+- **Pong** — 2 player pong, first to 7 wins (P1: W/S, P2: ↑/↓)
+
 - Full terminal emulator with command history, tab-complete, Ctrl+C, Ctrl+L
 - Draggable, stackable, maximizable app windows
 - Boot sequence with BIOS screen and kernel log animation
@@ -43,6 +47,8 @@ help              → all commands
 ls / cd / cat     → navigate virtual filesystem
 neofetch          → system info + logos
 open clock        → live clock app with unix time
+open asteroids    → play Asteroids (arrow keys + space)
+open pong         → play Pong (2 player, W/S vs ↑/↓)
 whoami            → user info
 uname -a          → OS info
 date              → current date/time

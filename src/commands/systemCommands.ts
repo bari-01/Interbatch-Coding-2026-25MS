@@ -26,6 +26,8 @@ export const systemCommands: Record<string, CommandHandler> = {
         `${c.cyan}open stack${c.reset}           ${c.gray}Tech stack details${c.reset}`,
         `${c.cyan}open contact${c.reset}         ${c.gray}Contact information${c.reset}`,
         `${c.cyan}open clock${c.reset}           ${c.gray}Live clock app${c.reset}`,
+        `${c.cyan}open asteroids${c.reset}       ${c.gray}Play Asteroids${c.reset}`,
+        `${c.cyan}open pong${c.reset}            ${c.gray}Play Pong (2 player)${c.reset}`,
       ]),
       formatSection('Easter Eggs', [
         `${c.magenta}sudo party${c.reset}                      ${c.gray}???${c.reset}`,
