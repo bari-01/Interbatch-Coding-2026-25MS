@@ -31,6 +31,9 @@ export const appCommands: Record<string, CommandHandler> = {
     const target = args[0]?.toLowerCase()
     const appMap: Record<string, { appId: string; title: string; preview: string }> = {
       home:    { appId: 'home',    title: 'home.exe',    preview: 'Opening homepage...' },
+      clock:     { appId: 'clock',     title: 'clock.app',     preview: 'Opening clock...' },
+      asteroids: { appId: 'asteroids', title: 'asteroids.exe', preview: 'Loading Asteroids...' },
+      pong:      { appId: 'pong',      title: 'pong.exe',      preview: 'Loading Pong...' },
       about:   { appId: 'about',   title: 'about.txt',   preview: 'Opening about page...' },
       team:    { appId: 'team',    title: 'team.db',     preview: 'Loading team roster...' },
       stack:   { appId: 'stack',   title: 'stack.log',   preview: 'Reading stack.log...' },

@@ -20,6 +20,8 @@ const ICONS: DesktopIcon[] = [
   { appId: 'contact',  title: 'contact.sh',   label: 'Contact',    icon: '@'  },
   { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥' },
   { appId: 'clock',    title: 'clock.app',    label: 'Clock',      icon: '⏰' },
+  { appId: 'asteroids',  title: 'asteroids.exe',  label: 'Asteroids',  icon: '🚀' },
+  { appId: 'pong',       title: 'pong.exe',        label: 'Pong',       icon: '🏓' },
 ]
 
 interface ContextMenu {

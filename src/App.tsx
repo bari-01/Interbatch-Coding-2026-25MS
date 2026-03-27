@@ -10,6 +10,8 @@ import {
   HomeApp, AboutApp, TeamApp,
   TechStackApp, ContactApp, NeofetchApp, ClockApp,
 } from './components/Apps/index'
+import { AsteroidsGame } from './components/Apps/Asteroids'
+import { PongGame } from './components/Apps/Pong'
 import { useWindowManager } from './hooks/useWindowManager'
 import { AppId } from './types'
 import './App.css'
@@ -67,8 +69,10 @@ function AppContent({ appId }: { appId: AppId }) {
     case 'stack':    return <TechStackApp />
     case 'contact':  return <ContactApp />
     case 'neofetch': return <NeofetchApp />
-    case 'clock':    return <ClockApp />
-    default:         return null
+    case 'clock':     return <ClockApp />
+    case 'asteroids': return <AsteroidsGame />
+    case 'pong':      return <PongGame />
+    default:          return null
   }
 }
 
