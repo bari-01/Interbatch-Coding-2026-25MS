@@ -24,8 +24,7 @@ export function PongGame() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const ctx = canvas.getContext('2d')!
 
     const onKey = (e: KeyboardEvent, down: boolean) => {
       stateRef.current.keys[e.key] = down
