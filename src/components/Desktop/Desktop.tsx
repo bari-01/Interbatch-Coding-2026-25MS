@@ -21,7 +21,16 @@ const ICONS: DesktopIcon[] = [
   { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥' },
   { appId: 'clock',    title: 'clock.app',    label: 'Clock',      icon: '⏰' },
   { appId: 'asteroids',  title: 'asteroids.exe',  label: 'Asteroids',  icon: '🚀' },
-  { appId: 'pong',       title: 'pong.exe',        label: 'Pong',       icon: '🏓' },
+  { appId: 'pong',       title: 'pong.exe',        label: 'Pong',         icon: '🏓' },
+  { appId: 'periodic',   title: 'periodic.app',    label: 'Periodic',     icon: '⚗' },
+  { appId: 'fourier',    title: 'fourier.app',     label: 'Fourier',      icon: '〜' },
+  { appId: 'gravity',    title: 'gravity.app',     label: 'Gravity',      icon: '🪐' },
+  { appId: 'dna',        title: 'dna.app',         label: 'DNA',          icon: '🧬' },
+  { appId: 'grapher',    title: 'grapher.app',     label: 'Grapher',      icon: 'f(x)' },
+  { appId: 'guestbook',  title: 'guestbook.app',   label: 'Guestbook',    icon: '📖' },
+  { appId: 'poll',       title: 'poll.app',        label: 'Poll',         icon: '📊' },
+  { appId: 'jokes',      title: 'jokes.app',       label: 'Jokes',        icon: '😂' },
+  { appId: 'slashdotai', title: 'slashdot-ai.app', label: 'SlashDot AI',  icon: '🤖' },
 ]
 
 interface ContextMenu {

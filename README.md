@@ -14,6 +14,26 @@
 SlashDot OS turns the SlashDot club website into a fake operating system running entirely in your browser. Navigate using a real terminal emulator (xterm.js) or click desktop icons — every section of the site is an app you can open, move, and minimize like a real OS window.
 
 ## Features
+### Apps
+```bash
+open home         → Homepage
+open about        → About page
+open team         → Team roster
+open stack        → Tech stack
+open contact      → Contact info
+open clock        → Live clock with unix time
+open asteroids    → Asteroids game
+open pong         → Pong (2 player)
+open periodic     → Interactive periodic table
+open fourier      → Fourier transform visualizer
+open gravity      → N-body gravity simulator
+open dna          → DNA sequence viewer + translator
+open grapher      → Mathematical function plotter
+open guestbook    → Sign the guestbook
+open poll         → Community voting polls
+open jokes        → Random joke generator
+open slashdotai   → Chat with SlashDot AI
+```
 
 ### Games
 - **Asteroids** — shoot asteroids, split them into smaller ones, 3 lives, levels get harder
@@ -127,6 +147,7 @@ echo <text>                    → prints text
 | Tool | Purpose |
 |------|---------|
 | React 18 + TypeScript | UI framework |
+| Canvas API | Asteroids + Pong games |
 | Vite 5 | Build tool |
 | xterm.js 5.5 | Terminal emulator |
 | Framer Motion 11 | Window animations |

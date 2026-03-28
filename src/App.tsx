@@ -12,6 +12,15 @@ import {
 } from './components/Apps/index'
 import { AsteroidsGame } from './components/Apps/Asteroids'
 import { PongGame } from './components/Apps/Pong'
+import { PeriodicTableApp } from './components/Apps/PeriodicTable'
+import { FourierVizApp } from './components/Apps/FourierViz'
+import { GravitySimApp } from './components/Apps/GravitySim'
+import { DNAViewerApp } from './components/Apps/DNAViewer'
+import { GraphPlotterApp } from './components/Apps/GraphPlotter'
+import { GuestbookApp } from './components/Apps/Guestbook'
+import { PollApp } from './components/Apps/Poll'
+import { JokeGeneratorApp } from './components/Apps/JokeGenerator'
+import { SlashDotAIApp } from './components/Apps/SlashDotAI'
 import { useWindowManager } from './hooks/useWindowManager'
 import { AppId } from './types'
 import './App.css'
@@ -71,8 +80,17 @@ function AppContent({ appId }: { appId: AppId }) {
     case 'neofetch': return <NeofetchApp />
     case 'clock':     return <ClockApp />
     case 'asteroids': return <AsteroidsGame />
-    case 'pong':      return <PongGame />
-    default:          return null
+    case 'pong':       return <PongGame />
+    case 'periodic':   return <PeriodicTableApp />
+    case 'fourier':    return <FourierVizApp />
+    case 'gravity':    return <GravitySimApp />
+    case 'dna':        return <DNAViewerApp />
+    case 'grapher':    return <GraphPlotterApp />
+    case 'guestbook':  return <GuestbookApp />
+    case 'poll':       return <PollApp />
+    case 'jokes':      return <JokeGeneratorApp />
+    case 'slashdotai': return <SlashDotAIApp />
+    default:           return null
   }
 }
 
