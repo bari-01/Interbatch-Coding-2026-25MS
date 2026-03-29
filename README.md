@@ -114,7 +114,6 @@ open contact      → Contact info
 open clock        → Live clock with unix time
 open asteroids    → Asteroids game
 open pong         → Pong (2 player)
-open gameoflife   → Conway's Game of Life
 open typing       → Typing speed test
 open periodic     → Interactive periodic table
 open fourier      → Fourier transform visualizer
@@ -129,6 +128,7 @@ open poll         → Community voting polls
 open jokes        → Random joke generator
 open slashdotai   → Chat with SlashDot AI
 open achievements → View achievements
+open gameoflife   → Conway's Game of Life
 ```
 
 ## Easter Eggs (50+ hidden commands)
