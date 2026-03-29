@@ -33,6 +33,12 @@ open guestbook    → Sign the guestbook
 open poll         → Community voting polls
 open jokes        → Random joke generator
 open slashdotai   → Chat with SlashDot AI
+open matrix-calc  → Matrix calculator with step-by-step solutions
+open physics      → 2D physics simulator with gravity, collisions, springs
+open molecular    → 3D molecular viewer with PDB support
+open gameoflife   → Conway's Game of Life simulator
+open typing       → Typing speed test with real-time WPM and accuracy
+open achievements → View SlashDot OS achievements and badges
 ```
 
 ### Games

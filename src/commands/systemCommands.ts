@@ -37,6 +37,12 @@ export const systemCommands: Record<string, CommandHandler> = {
         `${c.cyan}open poll${c.reset}             ${c.gray}Community polls${c.reset}`,
         `${c.cyan}open jokes${c.reset}            ${c.gray}Joke generator${c.reset}`,
         `${c.cyan}open slashdotai${c.reset}       ${c.gray}Chat with SlashDot AI${c.reset}`,
+        `${c.cyan}open physics${c.reset}          ${c.gray}Physics simulator${c.reset}`,
+        `${c.cyan}open molecular${c.reset}        ${c.gray}Molecular viewer${c.reset}`,
+        `${c.cyan}open matrix-calc${c.reset}      ${c.gray}Matrix calculator${c.reset}`,
+        `${c.cyan}open gameoflife${c.reset}       ${c.gray}Conway's Game of Life${c.reset}`,
+        `${c.cyan}open typing${c.reset}           ${c.gray}Typing speed test${c.reset}`,
+        `${c.cyan}open achievements${c.reset}     ${c.gray}View achievements${c.reset}`,
       ]),
       formatSection('Easter Eggs', [
         `${c.magenta}sudo party${c.reset}                      ${c.gray}???${c.reset}`,

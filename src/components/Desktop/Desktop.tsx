@@ -12,25 +12,31 @@ interface DesktopIcon {
 }
 
 const ICONS: DesktopIcon[] = [
-  { appId: 'terminal', title: 'terminal.sh',  label: 'Terminal',   icon: '>_' },
-  { appId: 'home',     title: 'home.exe',     label: 'Home',       icon: '⌂'  },
-  { appId: 'about',    title: 'about.txt',    label: 'About',      icon: '📄' },
-  { appId: 'team',     title: 'team.db',      label: 'Team',       icon: '👥' },
-  { appId: 'stack',    title: 'stack.log',    label: 'Tech Stack', icon: '⚙'  },
-  { appId: 'contact',  title: 'contact.sh',   label: 'Contact',    icon: '@'  },
-  { appId: 'neofetch', title: 'neofetch',     label: 'Neofetch',   icon: '🖥' },
-  { appId: 'clock',    title: 'clock.app',    label: 'Clock',      icon: '⏰' },
-  { appId: 'asteroids',  title: 'asteroids.exe',  label: 'Asteroids',  icon: '🚀' },
-  { appId: 'pong',       title: 'pong.exe',        label: 'Pong',         icon: '🏓' },
-  { appId: 'periodic',   title: 'periodic.app',    label: 'Periodic',     icon: '⚗' },
-  { appId: 'fourier',    title: 'fourier.app',     label: 'Fourier',      icon: '〜' },
-  { appId: 'gravity',    title: 'gravity.app',     label: 'Gravity',      icon: '🪐' },
-  { appId: 'dna',        title: 'dna.app',         label: 'DNA',          icon: '🧬' },
-  { appId: 'grapher',    title: 'grapher.app',     label: 'Grapher',      icon: 'f(x)' },
-  { appId: 'guestbook',  title: 'guestbook.app',   label: 'Guestbook',    icon: '📖' },
-  { appId: 'poll',       title: 'poll.app',        label: 'Poll',         icon: '📊' },
-  { appId: 'jokes',      title: 'jokes.app',       label: 'Jokes',        icon: '😂' },
-  { appId: 'slashdotai', title: 'slashdot-ai.app', label: 'SlashDot AI',  icon: '🤖' },
+  { appId: 'terminal',    title: 'terminal.sh',      label: 'Terminal',    icon: '>_'  },
+  { appId: 'home',        title: 'home.exe',          label: 'Home',        icon: '⌂'   },
+  { appId: 'about',       title: 'about.txt',         label: 'About',       icon: '📄'  },
+  { appId: 'team',        title: 'team.db',           label: 'Team',        icon: '👥'  },
+  { appId: 'stack',       title: 'stack.log',         label: 'Tech Stack',  icon: '⚙'   },
+  { appId: 'contact',     title: 'contact.sh',        label: 'Contact',     icon: '@'   },
+  { appId: 'neofetch',    title: 'neofetch',          label: 'Neofetch',    icon: '🖥'  },
+  { appId: 'clock',       title: 'clock.app',         label: 'Clock',       icon: '⏰'  },
+  { appId: 'asteroids',   title: 'asteroids.exe',     label: 'Asteroids',   icon: '🚀'  },
+  { appId: 'pong',        title: 'pong.exe',          label: 'Pong',        icon: '🏓'  },
+  { appId: 'gameoflife',  title: 'life.exe',          label: "Conway's",    icon: '🔲'  },
+  { appId: 'typing',      title: 'typing.exe',        label: 'Typing',      icon: '⌨'   },
+  { appId: 'periodic',    title: 'periodic.app',      label: 'Periodic',    icon: '⚗'   },
+  { appId: 'fourier',     title: 'fourier.app',       label: 'Fourier',     icon: '〜'  },
+  { appId: 'gravity',     title: 'gravity.app',       label: 'Gravity',     icon: '🪐'  },
+  { appId: 'dna',         title: 'dna.app',           label: 'DNA',         icon: '🧬'  },
+  { appId: 'grapher',     title: 'grapher.app',       label: 'Grapher',     icon: 'f(x)'},
+  { appId: 'physics',     title: 'physics.app',       label: 'Physics',     icon: '⚛'   },
+  { appId: 'molecular',   title: 'molecular.app',     label: 'Molecule',    icon: '🔬'  },
+  { appId: 'matrix-calc', title: 'matrix.app',        label: 'Matrix',      icon: '[M]' },
+  { appId: 'guestbook',   title: 'guestbook.app',     label: 'Guestbook',   icon: '📖'  },
+  { appId: 'poll',        title: 'poll.app',          label: 'Poll',        icon: '📊'  },
+  { appId: 'jokes',       title: 'jokes.app',         label: 'Jokes',       icon: '😂'  },
+  { appId: 'slashdotai',  title: 'slashdot-ai.app',   label: 'AI Chat',     icon: '🤖'  },
+  { appId: 'achievements',title: 'achievements.app',  label: 'Achievements', icon: '🏆'  },
 ]
 
 interface ContextMenu {
@@ -54,9 +60,21 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
   const [time, setTime] = useState(new Date())
   const [contextMenu, setContextMenu] = useState<ContextMenu | null>(null)
   const [muted, setMuted] = useState(false)
-  const [iconPositions, setIconPositions] = useState<Record<string, IconPosition>>(
-    Object.fromEntries(ICONS.map((icon, i) => [icon.appId, { x: 16, y: 16 + i * 80 }]))
-  )
+  const [iconPositions, setIconPositions] = useState<Record<string, IconPosition>>(() => {
+    const COL_W = 80
+    const ROW_H = 88
+    const START_X = 16
+    const START_Y = 16
+    const COLS = 4
+    const positions: Record<string, IconPosition> = {}
+    ICONS.forEach(function(icon, i) {
+      positions[icon.appId] = {
+        x: START_X + (i % COLS) * COL_W,
+        y: START_Y + Math.floor(i / COLS) * ROW_H,
+      }
+    })
+    return positions
+  })
   const draggingIcon = useRef<{ appId: string; startX: number; startY: number; origX: number; origY: number } | null>(null)
 
   useEffect(function() {
@@ -100,6 +118,48 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
     <div className="desktop" onContextMenu={handleRightClick}>
       <Particles />
       <div className="scanlines" />
+
+      {/* IISER Kolkata logo — bottom left above taskbar */}
+      <div style={{
+        position: 'fixed',
+        bottom: 44,
+        left: 16,
+        zIndex: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 4,
+        opacity: 0.35,
+        
+        transition: 'opacity 0.2s',
+      }}
+        onMouseEnter={function(e) { (e.currentTarget as HTMLElement).style.opacity = '0.9' }}
+        onMouseLeave={function(e) { (e.currentTarget as HTMLElement).style.opacity = '0.35' }}
+      >
+        <img src="./iiserkol_logo.png" alt="IISER Kolkata" style={{ width: 56, height: 'auto', filter: 'brightness(0.9)' }} />
+        <span style={{ color: '#888', fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.05em' }}>IISER Kolkata</span>
+      </div>
+
+      {/* SlashDot logo — bottom right above taskbar */}
+      <div style={{
+        position: 'fixed',
+        bottom: 44,
+        right: 16,
+        zIndex: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 4,
+        opacity: 0.35,
+        
+        transition: 'opacity 0.2s',
+      }}
+        onMouseEnter={function(e) { (e.currentTarget as HTMLElement).style.opacity = '0.9' }}
+        onMouseLeave={function(e) { (e.currentTarget as HTMLElement).style.opacity = '0.35' }}
+      >
+        <img src="./slashdot_logo.png" alt="SlashDot" style={{ width: 80, height: 'auto', filter: 'brightness(0.9)' }} />
+        <span style={{ color: '#888', fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.05em' }}>SlashDot Club</span>
+      </div>
 
       <div className="desktop-icons-layer">
         {ICONS.map(function(icon) {

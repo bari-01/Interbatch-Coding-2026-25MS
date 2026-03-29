@@ -6,6 +6,8 @@ import { AppWindow } from './components/WindowManager/AppWindow'
 import { TerminalWindow } from './components/Terminal/TerminalWindow'
 import { Confetti, MatrixRain } from './components/Desktop/EasterEggs'
 import { KernelPanic } from './components/Apps/KernelPanic'
+import { NotificationSystem } from './components/Desktop/NotificationSystem'
+import { CommandPalette } from './components/Desktop/CommandPalette'
 import {
   HomeApp, AboutApp, TeamApp,
   TechStackApp, ContactApp, NeofetchApp, ClockApp,
@@ -21,6 +23,12 @@ import { GuestbookApp } from './components/Apps/Guestbook'
 import { PollApp } from './components/Apps/Poll'
 import { JokeGeneratorApp } from './components/Apps/JokeGenerator'
 import { SlashDotAIApp } from './components/Apps/SlashDotAI'
+import { MatrixCalcApp } from './components/Apps/MatrixCalc'
+import { PhysicsSimApp } from './components/Apps/PhysicsSim'
+import { MolecularViewerApp } from './components/Apps/MolecularViewer'
+import { GameOfLifeApp } from './components/Apps/GameOfLife'
+import { TypingTestApp } from './components/Apps/TypingTest'
+import { AchievementsApp } from './components/Apps/Achievements'
 import { useWindowManager } from './hooks/useWindowManager'
 import { AppId } from './types'
 import './App.css'
@@ -89,8 +97,14 @@ function AppContent({ appId }: { appId: AppId }) {
     case 'guestbook':  return <GuestbookApp />
     case 'poll':       return <PollApp />
     case 'jokes':      return <JokeGeneratorApp />
-    case 'slashdotai': return <SlashDotAIApp />
-    default:           return null
+    case 'slashdotai':   return <SlashDotAIApp />
+    case 'matrix-calc':  return <MatrixCalcApp />
+    case 'physics':      return <PhysicsSimApp />
+    case 'molecular':    return <MolecularViewerApp />
+    case 'gameoflife':   return <GameOfLifeApp />
+    case 'typing':       return <TypingTestApp />
+    case 'achievements': return <AchievementsApp />
+    default:             return null
   }
 }
 
@@ -136,6 +150,10 @@ export default function App() {
     return () => window.removeEventListener('slashdot-minimize-all', handler)
   }, [windows, minimizeWindow])
 
+  const handleRunCommand = useCallback((cmd: string) => {
+    window.dispatchEvent(new CustomEvent('slashdot-run-cmd', { detail: { cmd } }))
+  }, [])
+
   const handleEasterEgg = useCallback((effect: string) => {
     if (effect === 'panic') {
       setKernelPanic(true)
@@ -173,7 +191,14 @@ export default function App() {
   }, [booted])
 
   if (!booted) {
-    return <BootScreen onDone={() => setBooted(true)} />
+    return <BootScreen onDone={() => {
+      setBooted(true)
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('slashdot-notify', {
+          detail: { message: 'Welcome to SlashDot OS! Press Ctrl+K for commands.', type: 'info' }
+        }))
+      }, 1000)
+    }} />
   }
 
   // ── Mobile layout ──────────────────────────────────────────────────────────
@@ -283,6 +308,8 @@ export default function App() {
       {kernelPanic && (
         <KernelPanic onRecover={function() { setKernelPanic(false) }} />
       )}
+      <NotificationSystem />
+      <CommandPalette onOpenWindow={handleOpenWindow} onRunCommand={handleRunCommand} />
     </div>
   )
 }

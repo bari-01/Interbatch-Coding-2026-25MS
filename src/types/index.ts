@@ -1,4 +1,4 @@
-export type AppId = 'terminal' | 'home' | 'about' | 'team' | 'stack' | 'contact' | 'neofetch' | 'clock' | 'asteroids' | 'pong' | 'periodic' | 'fourier' | 'gravity' | 'dna' | 'grapher' | 'guestbook' | 'poll' | 'jokes' | 'slashdotai'
+export type AppId = 'terminal' | 'home' | 'about' | 'team' | 'stack' | 'contact' | 'neofetch' | 'clock' | 'asteroids' | 'pong' | 'periodic' | 'fourier' | 'gravity' | 'dna' | 'grapher' | 'guestbook' | 'poll' | 'jokes' | 'slashdotai' | 'matrix-calc' | 'physics' | 'molecular' | 'gameoflife' | 'typing' | 'achievements'
 
 export interface WindowState {
   id: string
