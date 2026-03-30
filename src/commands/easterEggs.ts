@@ -858,16 +858,6 @@ export const easterEggs: Record<string, CommandHandler> = {
     ].join('\r\n'),
   }),
 
-  'sudo chmod 777 life': (): CommandResult => ({
-    output: [
-      
-      `${c.green}✓ Done. You now have full permissions to life.${c.reset}`,
-      `${c.white}rwxrwxrwx  you  life${c.reset}`,
-      `${c.gray}(Your parents may revoke these permissions.)${c.reset}`,
-      '',
-    ].join('\r\n'),
-  }),
-
   'curl iiserkol.ac.in': (): CommandResult => ({
     output: [
       '',
@@ -999,15 +989,4 @@ export const easterEggs: Record<string, CommandHandler> = {
       ].join('\r\n'),
     }
   },
-
-  'sudo give me a job': (): CommandResult => ({
-    output: [
-      '',
-      `${c.green}✓ Google    — Offer: $450,000/yr${c.reset}`,
-      `${c.green}✓ Anthropic — Offer: work with Claude all day${c.reset}`,
-      `${c.green}✓ IISER     — Offer: PhD stipend ₹37,000/month${c.reset}`,
-      `${c.gray}(All fake. Please update your LinkedIn.)${c.reset}`,
-      '',
-    ].join('\r\n'),
-  }),
 }
