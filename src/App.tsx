@@ -29,6 +29,8 @@ import { MolecularViewerApp } from './components/Apps/MolecularViewer'
 import { GameOfLifeApp } from './components/Apps/GameOfLife'
 import { TypingTestApp } from './components/Apps/TypingTest'
 import { AchievementsApp } from './components/Apps/Achievements'
+import { FlappyBirdApp } from './components/Apps/FlappyBird'
+import { DungeonCrawlerApp } from './components/Apps/DungeonCrawler'
 import { useWindowManager } from './hooks/useWindowManager'
 import { AppId } from './types'
 import './App.css'
@@ -104,6 +106,8 @@ function AppContent({ appId }: { appId: AppId }) {
     case 'gameoflife':   return <GameOfLifeApp />
     case 'typing':       return <TypingTestApp />
     case 'achievements': return <AchievementsApp />
+    case 'flappy':       return <FlappyBirdApp />
+    case 'dungeon':      return <DungeonCrawlerApp />
     default:             return null
   }
 }
@@ -193,11 +197,23 @@ export default function App() {
   if (!booted) {
     return <BootScreen onDone={() => {
       setBooted(true)
-      setTimeout(() => {
-        window.dispatchEvent(new CustomEvent('slashdot-notify', {
-          detail: { message: 'Welcome to SlashDot OS! Press Ctrl+K for commands.', type: 'info' }
-        }))
-      }, 1000)
+      try {
+        const raw = localStorage.getItem('slashdot-os-memory')
+        const mem = raw ? JSON.parse(raw) : null
+        const visits = (mem?.visits ?? 0) + 1
+        localStorage.setItem('slashdot-os-memory', JSON.stringify({ ...(mem ?? {}), visits, lastVisit: new Date().toLocaleDateString(), firstVisit: mem?.firstVisit ?? new Date().toLocaleDateString() }))
+        setTimeout(() => {
+          if (mem?.name && visits > 1) {
+            window.dispatchEvent(new CustomEvent('slashdot-notify', {
+              detail: { message: `Welcome back, ${mem.name}! Visit #${visits}`, type: 'success' }
+            }))
+          } else {
+            window.dispatchEvent(new CustomEvent('slashdot-notify', {
+              detail: { message: 'Welcome to SlashDot OS! Press Ctrl+K for commands.', type: 'info' }
+            }))
+          }
+        }, 1000)
+      } catch {}
     }} />
   }
 

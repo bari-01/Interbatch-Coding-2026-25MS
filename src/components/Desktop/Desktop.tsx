@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { AppId, WindowState } from '../../types'
 import { toggleMute, isMuted } from '../../utils/sounds'
 import { Particles } from './Particles'
+import { DesktopRain } from './DesktopRain'
 import './Desktop.css'
 
 interface DesktopIcon {
@@ -37,6 +38,8 @@ const ICONS: DesktopIcon[] = [
   { appId: 'jokes',       title: 'jokes.app',         label: 'Jokes',       icon: '😂'  },
   { appId: 'slashdotai',  title: 'slashdot-ai.app',   label: 'AI Chat',     icon: '🤖'  },
   { appId: 'achievements',title: 'achievements.app',  label: 'Achievements', icon: '🏆'  },
+  { appId: 'flappy',      title: 'flappy.exe',         label: 'Flappy {',    icon: '{}'  },
+  { appId: 'dungeon',     title: 'dungeon.exe',         label: 'Dungeon',     icon: '⚔'   },
 ]
 
 interface ContextMenu {
@@ -60,6 +63,8 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
   const [time, setTime] = useState(new Date())
   const [contextMenu, setContextMenu] = useState<ContextMenu | null>(null)
   const [muted, setMuted] = useState(false)
+  const [raining, setRaining] = useState(false)
+  const [visitorCount, setVisitorCount] = useState<number | null>(null)
   const [iconPositions, setIconPositions] = useState<Record<string, IconPosition>>(() => {
     const COL_W = 80
     const ROW_H = 88
@@ -80,6 +85,22 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
   useEffect(function() {
     const t = setInterval(function() { setTime(new Date()) }, 1000)
     return function() { clearInterval(t) }
+  }, [])
+
+  useEffect(function() {
+    const handler = function(e: Event) {
+      const { code } = (e as CustomEvent).detail
+      setRaining(code >= 51)
+    }
+    window.addEventListener('slashdot-weather', handler)
+    return function() { window.removeEventListener('slashdot-weather', handler) }
+  }, [])
+
+  useEffect(function() {
+    fetch('https://api.countapi.xyz/get/slashdot-os-25ms/visits')
+      .then(function(r) { return r.json() })
+      .then(function(d) { setVisitorCount(d.value ?? 0) })
+      .catch(function() {})
   }, [])
 
   useEffect(function() {
@@ -117,6 +138,7 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
   return (
     <div className="desktop" onContextMenu={handleRightClick}>
       <Particles />
+      {raining && <DesktopRain intensity={80} />}
       <div className="scanlines" />
 
       {/* IISER Kolkata logo — bottom left above taskbar */}
@@ -312,6 +334,11 @@ export function Desktop({ windows, onOpenWindow, onFocusWindow, onRestoreWindow 
         </div>
 
         <div className="taskbar-right">
+          {visitorCount !== null && (
+            <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#555' }} title="Total visitors">
+              👥 {visitorCount}
+            </span>
+          )}
           <span className="taskbar-wifi">▲ IISER-WiFi</span>
           <span className="taskbar-battery">🔋 25%</span>
           <button

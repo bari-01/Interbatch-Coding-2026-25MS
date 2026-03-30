@@ -49,6 +49,8 @@ export const appCommands: Record<string, CommandHandler> = {
       gameoflife:   { appId: 'gameoflife',   title: 'life.exe',         preview: 'Loading Game of Life...' },
       typing:       { appId: 'typing',       title: 'typing.exe',       preview: 'Loading Typing Test...' },
       achievements: { appId: 'achievements', title: 'achievements.app', preview: 'Loading Achievements...' },
+      flappy:       { appId: 'flappy',       title: 'flappy.exe',       preview: 'Loading Flappy Bracket...' },
+      dungeon:      { appId: 'dungeon',      title: 'dungeon.exe',      preview: 'Generating dungeon...' },
       about:   { appId: 'about',   title: 'about.txt',   preview: 'Opening about page...' },
       team:    { appId: 'team',    title: 'team.db',     preview: 'Loading team roster...' },
       stack:   { appId: 'stack',   title: 'stack.log',   preview: 'Reading stack.log...' },

@@ -49,6 +49,8 @@ SlashDot OS turns the SlashDot club website into a fake operating system running
 ### Games
 - **Asteroids** — shoot asteroids, 3 lives, levels get harder (arrow keys + space)
 - **Pong** — 2 player, first to 7 wins (P1: W/S, P2: ↑/↓)
+- **Flappy { }** — Flappy Bird with brackets, space to flap
+- **Dungeon Crawler** — ASCII roguelike, WASD to move, bump enemies to attack, find the stairs
 - **Conway's Game of Life** — click cells, presets, random fill
 - **Typing Speed Test** — WPM, accuracy, random passages
 
@@ -91,6 +93,10 @@ tree              → file system tree
 echo <text>       → print text
 banner <text>     → big ASCII text
 stats             → session statistics
+setname <name>    → set your username (remembered on next visit)
+visits            → live visitor counter
+rain on/off       → toggle desktop rain effect
+weather           → live weather from Open-Meteo API (real data!)
 reset             → reset terminal
 ```
 
@@ -128,6 +134,8 @@ open poll         → Community voting polls
 open jokes        → Random joke generator
 open slashdotai   → Chat with SlashDot AI
 open achievements → View achievements
+open flappy       → Flappy { } game
+open dungeon      → ASCII dungeon crawler RPG
 open gameoflife   → Conway's Game of Life
 ```
 

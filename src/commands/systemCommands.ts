@@ -43,6 +43,11 @@ export const systemCommands: Record<string, CommandHandler> = {
         `${c.cyan}open gameoflife${c.reset}       ${c.gray}Conway's Game of Life${c.reset}`,
         `${c.cyan}open typing${c.reset}           ${c.gray}Typing speed test${c.reset}`,
         `${c.cyan}open achievements${c.reset}     ${c.gray}View achievements${c.reset}`,
+        `${c.cyan}open flappy${c.reset}           ${c.gray}Flappy Bracket game${c.reset}`,
+        `${c.cyan}open dungeon${c.reset}          ${c.gray}Dungeon crawler RPG${c.reset}`,
+        `${c.yellow}setname <name>${c.reset}       ${c.gray}Set your username${c.reset}`,
+        `${c.yellow}visits${c.reset}               ${c.gray}Live visitor counter${c.reset}`,
+        `${c.yellow}rain on/off${c.reset}          ${c.gray}Toggle desktop rain${c.reset}`,
       ]),
       formatSection('Easter Eggs', [
         `${c.magenta}sudo party${c.reset}                      ${c.gray}???${c.reset}`,
@@ -162,19 +167,20 @@ export const systemCommands: Record<string, CommandHandler> = {
     return { output: `\r\n${c.white}${content}${c.reset}\r\n` }
   },
 
-  whoami: (): CommandResult => ({
-    output: [
-      '',
-      formatTable([
-        ['User',    'slashdot-user'],
-        ['Batch',   '25MS — IISER Kolkata'],
-        ['Club',    'SlashDot Programming & Design Club'],
-        ['Role',    'Competitor — Inter-Batch Web Dev 2026'],
-        ['Shell',   '/usr/bin/slashdot-sh'],
-      ]),
-      '',
-    ].join('\r\n'),
-  }),
+  whoami: (): CommandResult => {
+    const mem = (() => { try { const r = localStorage.getItem('slashdot-os-memory'); return r ? JSON.parse(r) : null } catch { return null } })()
+    const rows: [string, string][] = [
+      ['User',     mem?.name || 'slashdot-user'],
+      ['Batch',    '25MS — IISER Kolkata'],
+      ['Club',     'SlashDot Programming & Design Club'],
+      ['Role',     'Competitor — Inter-Batch Web Dev 2026'],
+      ['Shell',    '/usr/bin/slashdot-sh'],
+      ['Visits',   String(mem?.visits ?? 1)],
+      ['Commands', String(mem?.commandCount ?? 0)],
+      ['Since',    mem?.firstVisit ?? 'today'],
+    ]
+    return { output: ['\r\n', formatTable(rows), ''].join('\r\n') }
+  },
 
   uname: (args: string[]): CommandResult => {
     const all = args.includes('-a')
@@ -183,6 +189,13 @@ export const systemCommands: Record<string, CommandHandler> = {
         ? `\r\n${c.cyan}SlashDot OS${c.reset} ${c.yellow}6.8.0-25ms${c.reset} ${c.white}SMP PREEMPT 2026 x86_64 GNU/Linux${c.reset}\r\n`
         : `\r\n${c.cyan}SlashDot OS${c.reset}\r\n`,
     }
+  },
+
+  setname: (args: string[]): CommandResult => {
+    const name = args.join(' ').trim()
+    if (!name) return { output: `\r\n${c.red}Usage: setname <your name>${c.reset}\r\n` }
+    try { const r = localStorage.getItem('slashdot-os-memory'); const m = r ? JSON.parse(r) : {}; localStorage.setItem('slashdot-os-memory', JSON.stringify({ ...m, name })) } catch {}
+    return { output: `\r\n${c.green}✓ Name set to: ${name}${c.reset}\r\n${c.gray}Type 'whoami' to see your profile.${c.reset}\r\n` }
   },
 
   date: (): CommandResult => ({

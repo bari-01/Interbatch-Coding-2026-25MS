@@ -61,6 +61,14 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
     term.open(containerRef.current)
     fitAddon.fit()
 
+    // Listen for async terminal writes
+    const writeHandler = (e: Event) => {
+      const { text } = (e as CustomEvent).detail
+      term.write(text)
+      term.write('\r\n' + prompt(getCwd()))
+    }
+    window.addEventListener('slashdot-terminal-write', writeHandler)
+
     // Listen for cursor style changes
     const cursorHandler = (e: Event) => {
       const { style } = (e as CustomEvent).detail
@@ -220,6 +228,7 @@ export function TerminalWindow({ onOpenWindow, onEasterEgg }: Props) {
     return function() {
       ro.disconnect()
       term.dispose()
+      window.removeEventListener('slashdot-terminal-write', writeHandler)
       window.removeEventListener('slashdot-cursor', cursorHandler)
       window.removeEventListener('slashdot-font', fontHandler)
       window.removeEventListener('slashdot-theme', themeHandler)
