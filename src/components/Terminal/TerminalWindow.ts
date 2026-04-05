@@ -25,21 +25,21 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
 
   const term = new Terminal({
     theme: {
-      background:  '#0a0a0a',
-      foreground:  '#d0d0d0',
-      cursor:      '#00ff46',
-      cursorAccent:'#000',
+      background: '#0a0a0a',
+      foreground: '#d0d0d0',
+      cursor: '#00ff46',
+      cursorAccent: '#000',
       selectionBackground: '#00ff4630',
-      black:       '#1a1a1a',
-      green:       '#00ff46',
-      cyan:        '#00c8ff',
-      yellow:      '#ffd700',
-      magenta:     '#c864ff',
-      red:         '#ff5050',
-      white:       '#e0e0e0',
+      black: '#1a1a1a',
+      green: '#00ff46',
+      cyan: '#00c8ff',
+      yellow: '#ffd700',
+      magenta: '#c864ff',
+      red: '#ff5050',
+      white: '#e0e0e0',
       brightBlack: '#555',
       brightGreen: '#39ff6a',
-      brightCyan:  '#40d8ff',
+      brightCyan: '#40d8ff',
       brightWhite: '#ffffff',
     },
     fontFamily: "'JetBrains Mono', 'Share Tech Mono', monospace",
@@ -63,17 +63,17 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
     const themeHandler = (e: Event) => {
       const { name } = (e as CustomEvent).detail
       const themeColors: Record<string, string> = {
-        green:  '#00ff46',
-        amber:  '#ffb000',
-        blue:   '#00b4ff',
-        red:    '#ff5050',
+        green: '#00ff46',
+        amber: '#ffb000',
+        blue: '#00b4ff',
+        red: '#ff5050',
         purple: '#b464ff',
       }
       const col = themeColors[name] ?? '#00ff46'
       term.options.theme = {
         ...term.options.theme,
         cursor: col,
-        green:  col,
+        green: col,
       }
     }
     window.addEventListener('slashdot-theme', themeHandler)
@@ -86,7 +86,7 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
       '  ___) | | (_| \\__ \\ | | | |_| | (_) | |_  \r\n' +
       ' |____/|_|\\__,_|___/_| |_|____/ \\___/ \\__| \r\n' +
       '\x1b[0m',
-      '\x1b[38;2;0;200;255m  SlashDot OS v2026.1 — 25MS WASM Edition\x1b[0m',
+      '\x1b[38;2;0;200;255m  Emulated ELF Runtime v2026.1 — WASM\x1b[0m',
       '\x1b[38;2;120;120;120m  Loading initramfs from network... Please wait.\x1b[0m',
       '',
     ]
@@ -134,7 +134,7 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
       }
 
       term.writeln('\x1b[38;2;120;120;120m  Initializing emulator...\x1b[0m')
-      
+
       // @ts-ignore
       const { default: createEmulator } = await import('../../emulator-module/emulator.js')
 
@@ -143,8 +143,8 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
           if (path.endsWith('.wasm')) return '/os/' + path
           return path
         },
-        print: () => {},
-        printErr: () => {},
+        print: () => { },
+        printErr: () => { },
         preRun: [
           (Module: any) => {
             Module.FS.mkdir('/initramfs')
@@ -153,7 +153,7 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
               let cur = '/initramfs'
               for (let i = 0; i < parts.length - 1; i++) {
                 cur += '/' + parts[i]
-                try { Module.FS.mkdir(cur) } catch (e) {}
+                try { Module.FS.mkdir(cur) } catch (e) { }
               }
               Module.FS.writeFile('/initramfs/' + filename, data)
             }
@@ -166,29 +166,29 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
                 term.write(String.fromCharCode(charCode))
               }
             }
-            Module.FS.init(null, null, charOut)
+            Module.FS.init(null, charOut, charOut)
           }
         ]
       });
 
       emulatorInstance = emulator;
       term.writeln('\x1b[38;2;0;255;70m  Emulator Running!\x1b[0m')
-      
+
       // Call main with the compiled shell
       emulator.callMain(['/elf'])
-      
+
     } catch (err) {
-      term.writeln('\x1b[31mFailed to load WASM OS:\x1b[0m ' + err)
+      term.writeln('\x1b[31mFailed to load emulated ELF runtime:\x1b[0m ' + err)
     }
 
     const ro = new ResizeObserver(() => fitAddon.fit())
     ro.observe(wrapper)
 
-    ;(container as any)._cleanup = () => {
-      ro.disconnect()
-      term.dispose()
-      window.removeEventListener('slashdot-theme', themeHandler)
-    }
+      ; (container as any)._cleanup = () => {
+        ro.disconnect()
+        term.dispose()
+        window.removeEventListener('slashdot-theme', themeHandler)
+      }
   }, 0)
 
   return container
