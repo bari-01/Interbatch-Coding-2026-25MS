@@ -58,11 +58,18 @@ int main() {
       }
     } else if (strcmp(argv[0], "help") == 0) {
       printf("Built-in commands:\n");
-      printf("  cd [dir]   - change directory\n");
+      printf("  cd [dir]   - change directory (supports ..)\n");
       printf("  pwd        - print working directory\n");
+      printf("  clear      - clear screen\n");
       printf("  help       - show this help\n");
       printf("  exit       - exit shell\n");
-      printf("\nExternal commands: ls, cat, echo, mkdir\n");
+      printf("\nExternal commands:\n");
+      printf("  ls [dir]   - list directory contents\n");
+      printf("  cat <file> - print file contents\n");
+      printf("  echo <msg> - print a message\n");
+      printf("  tree [dir] - show directory tree\n");
+      printf("  mkdir <d>  - create a directory\n");
+      printf("  cowsay <m> - moo\n");
     } else if (strcmp(argv[0], "pwd") == 0) {
       printf("%s\n", pwd);
     } else if (strcmp(argv[0], "clear") == 0) {
