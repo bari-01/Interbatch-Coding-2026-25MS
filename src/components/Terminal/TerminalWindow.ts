@@ -1,27 +1,13 @@
 import { Terminal } from '@xterm/xterm'
 import { FitAddon } from '@xterm/addon-fit'
 import { WebLinksAddon } from '@xterm/addon-web-links'
-import { parseAndRun, getCompletions } from '../../commands'
-import { prompt } from '../../utils/formatOutput'
-import { getCwd } from '../../commands/systemCommands'
-import { AppId } from '../../types'
-import { playKeyClick, playEnter } from '../../utils/sounds'
 import { h } from '../../../framework/render'
 import '@xterm/xterm/css/xterm.css'
 import './TerminalWindow.css'
 
-interface TerminalProps {
-  onOpenWindow: (appId: AppId, title: string) => void
-  onEasterEgg: (effect: string) => void
-}
-
-export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProps) {
+export function createTerminalWindow() {
   const wrapper = h('div', { className: 'xterm-wrapper' })
   const container = h('div', { className: 'terminal-container' }, wrapper)
-
-  let inputStr = ''
-  const history: string[] = []
-  let histIdx = -1
 
   const term = new Terminal({
     theme: {
@@ -51,7 +37,6 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
     convertEol: true,
   })
 
-  // We mount it after the DOM is rendered
   setTimeout(async () => {
     const fitAddon = new FitAddon()
     const linksAddon = new WebLinksAddon()
@@ -93,7 +78,6 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
     welcomeLines.forEach(l => term.writeln(l))
 
     let emulatorInstance: any = null
-
     let inputStr = ''
 
     term.onKey(({ key, domEvent }) => {
@@ -158,7 +142,6 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
               Module.FS.writeFile('/initramfs/' + filename, data)
             }
 
-            // Character-level stdout/stderr so partial lines (prompts) work
             const charOut = (charCode: number) => {
               if (charCode === 10) {
                 term.write('\r\n')
@@ -169,12 +152,10 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
             Module.FS.init(null, charOut, charOut)
           }
         ]
-      });
+      })
 
-      emulatorInstance = emulator;
+      emulatorInstance = emulator
       term.writeln('\x1b[38;2;0;255;70m  Emulator Running!\x1b[0m')
-
-      // Call main with the compiled shell
       emulator.callMain(['/elf'])
 
     } catch (err) {
@@ -184,11 +165,11 @@ export function createTerminalWindow({ onOpenWindow, onEasterEgg }: TerminalProp
     const ro = new ResizeObserver(() => fitAddon.fit())
     ro.observe(wrapper)
 
-      ; (container as any)._cleanup = () => {
-        ro.disconnect()
-        term.dispose()
-        window.removeEventListener('slashdot-theme', themeHandler)
-      }
+    ;(container as any)._cleanup = () => {
+      ro.disconnect()
+      term.dispose()
+      window.removeEventListener('slashdot-theme', themeHandler)
+    }
   }, 0)
 
   return container

@@ -2,7 +2,12 @@ import { createDesktop } from './components/Desktop/Desktop'
 import { createAppWindow } from './components/WindowManager/AppWindow'
 import { createTerminalWindow } from './components/Terminal/TerminalWindow'
 import { windowManager } from './store/windowManager'
-import { HomeApp, AboutApp, TeamApp, TechStackApp, ContactApp, NeofetchApp } from './components/Apps'
+import { 
+  HomeApp, AboutApp, TeamApp, TechStackApp, ContactApp, NeofetchApp,
+  AsteroidsApp, DNAViewerApp, FlappyBirdApp, FourierVizApp, GameOfLifeApp,
+  GraphPlotterApp, GravitySimApp, MatrixCalcApp, MolecularViewerApp,
+  PeriodicTableApp, PhysicsSimApp, PongApp, SlashDotAIApp, TypingTestApp
+} from './components/Apps'
 import { AppId, WindowState } from './types'
 import { h } from '../framework/render'
 import './App.css'
@@ -28,7 +33,21 @@ if (root) {
     team: TeamApp,
     stack: TechStackApp,
     contact: ContactApp,
-    neofetch: NeofetchApp
+    neofetch: NeofetchApp,
+    asteroids: AsteroidsApp,
+    dna: DNAViewerApp,
+    flappy: FlappyBirdApp,
+    fourier: FourierVizApp,
+    gameoflife: GameOfLifeApp,
+    grapher: GraphPlotterApp,
+    gravity: GravitySimApp,
+    'matrix-calc': MatrixCalcApp,
+    molecular: MolecularViewerApp,
+    periodic: PeriodicTableApp,
+    physics: PhysicsSimApp,
+    pong: PongApp,
+    slashdotai: SlashDotAIApp,
+    typing: TypingTestApp
   }
 
   // Effect map
@@ -66,7 +85,7 @@ if (root) {
         // Create new window
         let content: HTMLElement
         if (w.appId === 'terminal') {
-          content = createTerminalWindow({ onOpenWindow, onEasterEgg })
+          content = createTerminalWindow()
         } else {
           const factory = appMap[w.appId]
           content = factory ? factory() : h('div', null, 'App not found')
