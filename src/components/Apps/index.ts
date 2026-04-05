@@ -192,3 +192,17 @@ export function NeofetchApp() {
     </div>
   `)
 }
+export * from './Asteroids'
+export * from './DNAViewer'
+export * from './FlappyBird'
+export * from './FourierViz'
+export * from './GameOfLife'
+export * from './GraphPlotter'
+export * from './GravitySim'
+export * from './MatrixCalc'
+export * from './MolecularViewer'
+export * from './PeriodicTable'
+export * from './PhysicsSim'
+export * from './Pong'
+export * from './SlashDotAI'
+export * from './TypingTest'

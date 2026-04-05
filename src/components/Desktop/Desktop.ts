@@ -2,6 +2,8 @@ import { h } from '../../../framework/render'
 import { windowManager } from '../../store/windowManager'
 import { AppId, WindowState } from '../../types'
 import { toggleMute } from '../../utils/sounds'
+import { createDesktopRain } from './DesktopRain'
+import { createClippy } from './Clippy'
 import './Desktop.css'
 
 interface DesktopIcon {
@@ -19,11 +21,29 @@ const ICONS: DesktopIcon[] = [
   { appId: 'stack', title: 'stack.log', label: 'Tech Stack', icon: '⚙' },
   { appId: 'contact', title: 'contact.sh', label: 'Contact', icon: '@' },
   { appId: 'neofetch', title: 'neofetch', label: 'Neofetch', icon: '🖥' },
+  { appId: 'asteroids', title: 'asteroids.exe', label: 'Asteroids', icon: '☄' },
+  { appId: 'pong', title: 'pong.exe', label: 'Pong', icon: '🏓' },
+  { appId: 'flappy', title: 'flappy.exe', label: 'Flappy Bird', icon: '🐦' },
+  { appId: 'typing', title: 'typing.exe', label: 'Typing Test', icon: '⌨' },
+  { appId: 'periodic', title: 'periodic.app', label: 'Periodic Table', icon: '🧪' },
+  { appId: 'matrix-calc', title: 'matrix.app', label: 'Matrix Calc', icon: '🔢' },
+  { appId: 'slashdotai', title: 'slashdot-ai.app', label: 'SlashDot AI', icon: '🤖' },
+  { appId: 'fourier', title: 'fourier.app', label: 'Fourier Viz', icon: '〰' },
+  { appId: 'gravity', title: 'gravity.app', label: 'Gravity Sim', icon: '🌌' },
+  { appId: 'physics', title: 'physics.app', label: 'Physics Sim', icon: '⚛' },
+  { appId: 'dna', title: 'dna.app', label: 'DNA Viewer', icon: '🧬' },
+  { appId: 'molecular', title: 'molecular.app', label: 'Molecular', icon: '🧪' },
+  { appId: 'grapher', title: 'grapher.app', label: 'Grapher', icon: '📈' },
+  { appId: 'gameoflife', title: 'life.exe', label: 'Game of Life', icon: '🧬' },
 ]
 
 export function createDesktop() {
   let muted = false
   const timeState = { time: new Date() }
+  
+  // Background effects
+  const rain = createDesktopRain(40)
+  const clippy = createClippy()
 
   // Icon buttons
   const iconsContainer = h('div', { className: 'desktop-icons' })
@@ -82,8 +102,10 @@ export function createDesktop() {
 
   const desktop = h('div', { className: 'desktop' },
     h('div', { className: 'scanlines' }),
+    rain,
     iconsContainer,
-    taskbar
+    taskbar,
+    clippy
   )
 
   // Context Menu
@@ -131,6 +153,10 @@ export function createDesktop() {
       mkItem('@', 'Open Contact', () => windowManager.openWindow('contact', 'contact.sh')),
       h('div', { className: 'context-divider' }),
       mkItem('🖥', 'Neofetch', () => windowManager.openWindow('neofetch', 'neofetch')),
+      mkItem('☄', 'Asteroids', () => windowManager.openWindow('asteroids', 'asteroids.exe')),
+      mkItem('🏓', 'Pong', () => windowManager.openWindow('pong', 'pong.exe')),
+      mkItem('🐦', 'Flappy Bird', () => windowManager.openWindow('flappy', 'flappy.exe')),
+      mkItem('🤖', 'SlashDot AI', () => windowManager.openWindow('slashdotai', 'slashdot-ai.app')),
       h('div', { className: 'context-divider' }),
       mkItem('↺', 'Refresh Desktop', () => window.location.reload()),
       mkItem('⛶', 'Fullscreen', () => {
@@ -170,6 +196,8 @@ export function createDesktop() {
     ; (desktop as any)._cleanup = () => {
       clearInterval(timer)
       unsubscribe()
+      if ((rain as any)._cleanup) (rain as any)._cleanup()
+      if ((clippy as any)._cleanup) (clippy as any)._cleanup()
     }
 
   return desktop
