@@ -77,7 +77,6 @@ export function TeamApp() {
   const container = h('div', { className: 'team-grid' })
   teamMembers.forEach(member => {
     const card = h('div', { className: 'team-card' },
-      h('pre', { className: 'team-ascii' }, member.ascii),
       h('p', { className: 'team-name' }, member.name),
       h('p', { className: 'team-role' }, member.role),
       h('p', {
