@@ -114,7 +114,7 @@ export function TechStackApp() {
         h('span', { className: 'stack-desc' }, t.description)
       ))
     })
-    
+
     container.appendChild(h('div', { className: 'app-section' },
       h('p', { className: 'app-label yellow' }, `// ${cat}`),
       list

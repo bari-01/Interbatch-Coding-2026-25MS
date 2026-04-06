@@ -1,15 +1,42 @@
-import { TeamMember } from '../types'
-
-export const teamMembers: TeamMember[] = [
+export const teamMembers = [
+  {
+    name: 'Shuvam Banerji Seal',
+    role: 'Office Bearer',
+    batch: '22MS',
+    email: 'sbs22ms076@iiserkol.ac.in',
+    github: '',
+    fun_fact: 'Once tried to use a microwave as a computer. It didn’t work, but he still keeps it on his desk for inspiration.',
+  },
+  {
+    name: 'Anuprovo Debnath',
+    role: 'Office Bearer',
+    batch: '23MS',
+    email: 'ad23ms110@iiserkol.ac.in',
+    github: '',
+    fun_fact: 'Has a collection of over 50 rubber ducks, each with its own name and backstory.',
+  },
+  {
+    name: 'Abhinav Dhingra',
+    role: 'Office Bearer',
+    batch: '24MS',
+    email: 'ad24ms110@iiserkol.ac.in',
+    github: '',
+    fun_fact: 'Has a pet cat named "Byte" who is the real boss of the house.',
+  },
   {
     name: 'Sankhadeep Bera',
-    role: 'Cussing my life everytime',
+    role: 'Developer — 25MS',
+    batch: '25MS',
+    email: 'sb25ms227@iiserkol.ac.in',
     github: 'berasankhadeep20-lang',
-    fun_fact: 'Never wanted to join IISER',
-    ascii: `
-  ╔══════╗
-  ║ >_< ║
-  ╚══════╝`,
+    fun_fact: 'Can solve a Rubik’s cube in under 30 seconds, but still can’t find his keys half the time.',
   },
-  // Add more team members here
+  {
+    name: 'S. Bari',
+    role: 'Developer — 25MS',
+    batch: '25MS',
+    email: 'shayan.bari.0001@gmail.com',
+    github: '',
+    fun_fact: 'Once tried to debug a program by yelling at the screen. It didn’t work, but it felt good.',
+  },
 ]
