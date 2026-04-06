@@ -31,8 +31,8 @@ export function HomeApp() {
         </div>
       </div>
       <div class="app-logos">
-        <div class="logo-placeholder"><img src="/iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
-        <div class="logo-placeholder"><img src="/slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
       </div>
     </div>
   `)
@@ -66,8 +66,8 @@ export function AboutApp() {
       </div>
       <div class="app-divider"></div>
       <div class="app-logos">
-        <div class="logo-placeholder"><img src="/iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
-        <div class="logo-placeholder"><img src="/slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
       </div>
     </div>
   `)
@@ -186,8 +186,8 @@ export function NeofetchApp() {
       </div>
       <div class="app-divider"></div>
       <div class="app-logos">
-        <div class="logo-placeholder"><img src="/iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
-        <div class="logo-placeholder"><img src="/slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./iiserkol_logo.png" alt="IISER Kolkata" class="logo-img" /></div>
+        <div class="logo-placeholder"><img src="./slashdot_logo.png" alt="SlashDot" class="logo-img" /></div>
       </div>
     </div>
   `)
