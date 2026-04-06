@@ -9,4 +9,6 @@ export const techStack: TechItem[] = [
   { name: 'CSS Variables', description: 'Theming and OS color system', category: 'frontend' },
   { name: 'GitHub Pages', description: 'Static site deployment', category: 'tooling' },
   { name: 'GitHub Actions', description: 'CI/CD pipeline', category: 'tooling' },
+  { name: 'RISC-V Emulator', description: 'Custom RV32IMAF core compiled to WASM via Emscripten', category: 'language' },
+  { name: 'Emscripten',description: 'C/C++ to WebAssembly cross-compilation toolchain',     category: 'tooling' },
 ]
