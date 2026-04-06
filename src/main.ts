@@ -102,4 +102,26 @@ if (root) {
       }
     }
   })
+
+  // 4. Handle commands from RISC-V emulator (via OSC 999 escape)
+  window.addEventListener('slashdot-jscmd', ((e: CustomEvent) => {
+    const payload = e.detail as string
+    if (payload.startsWith('open:')) {
+      const appId = payload.slice(5)
+      const titleMap: Record<string, string> = {
+        home: 'home.exe', about: 'about.txt', team: 'team.db',
+        stack: 'stack.log', contact: 'contact.sh', neofetch: 'neofetch',
+        asteroids: 'asteroids.exe', pong: 'pong.exe', periodic: 'periodic.app',
+        fourier: 'fourier.app', gravity: 'gravity.app', dna: 'dna.app',
+        grapher: 'grapher.app', slashdotai: 'slashdot-ai.app',
+        'matrix-calc': 'matrix.app', physics: 'physics.app',
+        molecular: 'molecular.app', gameoflife: 'life.exe',
+        typing: 'typing.exe', flappy: 'flappy.exe',
+      }
+      const title = titleMap[appId] || appId
+      if (appMap[appId]) {
+        windowManager.openWindow(appId as AppId, title)
+      }
+    }
+  }) as EventListener)
 }
