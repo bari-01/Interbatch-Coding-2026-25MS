@@ -105,7 +105,7 @@ export function createTerminalWindow() {
     try {
       // @ts-ignore
       const JSZip = (await import('jszip')).default
-      const resp = await fetch('/initramfs.zip')
+      const resp = await fetch('./initramfs.zip')
       const buf = await resp.arrayBuffer()
       const zip = await JSZip.loadAsync(buf)
 
@@ -124,7 +124,7 @@ export function createTerminalWindow() {
 
       const emulator = await createEmulator({
         locateFile: (path: string) => {
-          if (path.endsWith('.wasm')) return '/os/' + path
+          if (path.endsWith('.wasm')) return './os/' + path
           return path
         },
         print: () => { },
